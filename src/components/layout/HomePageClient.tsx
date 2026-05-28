@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Hero, MainLayout } from '@/components/layout'
 import {
@@ -19,13 +19,9 @@ import { getLocations } from '@/lib/api/locations'
 
 export function HomePageClient() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeTab, setActiveTab] = useState<FilterTab>('characters')
+  const [activeTab, setActiveTab] = useState<FilterTab | null>(null)
   const debouncedQuery = useDebounce(searchQuery, 300)
   const charactersSectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    setActiveTab('characters')
-  }, [debouncedQuery])
 
   const { data: charactersData, isLoading: isLoadingCharacters } = useQuery({
     queryKey: ['characters', debouncedQuery],
@@ -72,7 +68,7 @@ export function HomePageClient() {
             <FilterTabs active={activeTab} onChange={setActiveTab} />
           </section>
 
-          {(!isSearching || activeTab === 'characters') && (
+          {(activeTab === null || activeTab === 'characters') && (
             <section
               ref={charactersSectionRef}
               id="characters-section"
@@ -97,7 +93,7 @@ export function HomePageClient() {
             </section>
           )}
 
-          {(!isSearching || activeTab === 'episodes') && (
+          {(activeTab === null || activeTab === 'episodes') && (
             <section className="transition-opacity duration-200">
               <SectionHeader title="Episódios" href="/episodes" />
               {isLoadingEpisodes ? (
@@ -118,7 +114,7 @@ export function HomePageClient() {
             </section>
           )}
 
-          {(!isSearching || activeTab === 'locations') && (
+          {(activeTab === null || activeTab === 'locations') && (
             <section className="transition-opacity duration-200">
               <SectionHeader title="Localizações" href="/locations" />
               {isLoadingLocations ? (
