@@ -143,36 +143,17 @@ export function HomePageClient() {
             <section className="transition-opacity duration-200">
               <SectionHeader title="Episódios" href="/episodes" />
               {isLoadingEpisodes ? (
-                <div
-                  className={
-                    isSearching
-                      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
-                      : 'flex gap-4 overflow-x-auto pb-2'
-                  }
-                >
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={isSearching ? '' : 'min-w-[320px] flex-shrink-0'}
-                    >
-                      <SkeletonCard type="episode" />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <SkeletonCard key={i} type="episode" />
                   ))}
                 </div>
               ) : episodes.length === 0 ? (
                 <EmptyState />
-              ) : isSearching ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {episodes.map((ep) => (
-                    <EpisodeCard key={ep.id} episode={ep} />
-                  ))}
-                </div>
               ) : (
-                <div className="flex gap-4 overflow-x-auto pb-2">
-                  {episodes.slice(0, 6).map((ep) => (
-                    <div key={ep.id} className="min-w-[320px] flex-shrink-0">
-                      <EpisodeCard episode={ep} />
-                    </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                  {(isSearching ? episodes : episodes.slice(0, 5)).map((ep) => (
+                    <EpisodeCard key={ep.id} episode={ep} />
                   ))}
                 </div>
               )}
