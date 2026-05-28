@@ -35,9 +35,9 @@ export function CharacterCard({ character }: { character: Character }) {
         </div>
       </div>
       <div className="pt-4 flex flex-col gap-2">
-        <div className="flex items-center justify-between gap-2">
-          <h4 className="text-h4 font-bold text-foreground truncate">{character.name}</h4>
-          <FavoriteButton item={favoriteItem} />
+        <div className="flex justify-between gap-3">
+          <h4 className="text-h4 font-bold text-foreground">{character.name}</h4>
+          <FavoriteButton item={favoriteItem} size='lg'/>
         </div>
         <div className="flex items-center gap-1.5 text-body text-muted">
           <Activity size={12} className="flex-shrink-0" />
@@ -52,7 +52,7 @@ export function CharacterCard({ character }: { character: Character }) {
           <span className="truncate">{character.origin.name}</span>
         </div>
         <div className="flex justify-end mt-6">
-          <Button variant="primary" size="sm" asChild>
+          <Button variant="surface" size="sm" asChild>
             <Link href={`/characters/${character.id}`}>
               <Info size={20} />
               Saiba mais
