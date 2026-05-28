@@ -4,13 +4,8 @@ import Image from 'next/image'
 import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import { useThemeStore } from '@/lib/store/theme'
 
-interface HeroProps {
-  onAccentClick: () => void
-}
-
-export function Hero({ onAccentClick }: HeroProps) {
+export function Hero() {
   const { theme } = useThemeStore()
-  const isDark = theme === 'dark'
 
   return (
     <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black overflow-hidden">
@@ -28,16 +23,9 @@ export function Hero({ onAccentClick }: HeroProps) {
             Personagens. localizações, episódios e muito mais.
           </p>
 
-        <div className="mt-16">
+          <div className="mt-16">
             <ThemeToggle />
           </div>
-
-          <button
-            onClick={onAccentClick}
-            className="mt-6 w-fit text-h4 text-cyan-primary hover:underline underline-offset-2 transition-colors"
-          >
-            {isDark ? "Ai sim, Porr#@%&*" : "Wubba Lubba Dub Dub! Cuidado com os olhos."}
-          </button>
         </div>
 
         <div className="relative flex-shrink-0 w-full lg:w-[435px] h-[300px] lg:h-[434px]">
