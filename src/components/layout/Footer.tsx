@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronUp } from 'lucide-react'
 import { useThemeStore } from '@/lib/store/theme'
+import { Button } from '@/components/ui/Button'
 
 export function Footer() {
   const { theme } = useThemeStore()
@@ -24,13 +25,15 @@ export function Footer() {
             className="object-contain"
           />
         </Link>
-        <button
+        <Button
           onClick={scrollToTop}
-          className="flex items-center gap-2 text-body text-foreground hover:text-cyan-primary transition-colors"
+          variant="ghost"
+          size="sm"
+          className="p-0 text-foreground hover:text-cyan-primary hover:bg-transparent"
         >
           <span>Voltar ao topo</span>
           <ChevronUp size={18} />
-        </button>
+        </Button>
       </div>
     </footer>
   )

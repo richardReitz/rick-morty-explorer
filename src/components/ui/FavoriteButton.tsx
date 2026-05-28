@@ -4,6 +4,7 @@ import { Heart } from 'lucide-react'
 import { useFavoritesStore } from '@/lib/store/favorites'
 import type { FavoriteItem } from '@/lib/types'
 import { cn } from '@/lib/utils'
+import { Button } from './Button'
 
 type FavoriteButtonProps = {
   item: FavoriteItem
@@ -24,23 +25,22 @@ export function FavoriteButton({ item, size = 'sm' }: FavoriteButtonProps) {
     }
   }
 
-  const iconSize = size === 'lg' ? 48 : 32
-
   return (
-    <button
+    <Button
       onClick={toggle}
+      variant="ghost"
+      size="sm"
       aria-label={favorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-      style={{ width: iconSize, height: iconSize }}
       className={cn(
-        'flex items-center justify-center transition-all duration-150 active:scale-90',
+        'p-0 active:scale-90 hover:bg-transparent',
+        size === 'lg' ? 'size-12 [&>svg]:size-12' : 'size-8 [&>svg]:size-8',
         favorited ? 'text-cyan-primary' : 'text-muted hover:text-cyan-primary'
       )}
     >
       <Heart
-        size={iconSize}
         fill={favorited ? 'currentColor' : 'none'}
         className="transition-colors"
       />
-    </button>
+    </Button>
   )
 }

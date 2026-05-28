@@ -2,6 +2,7 @@
 
 import { Search, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Button } from './Button'
 
 interface SearchBarProps {
   value: string
@@ -30,13 +31,15 @@ export function SearchBar({
         )}
       />
       {value ? (
-        <button
+        <Button
           onClick={() => onChange('')}
-          className="absolute right-3 text-muted hover:text-foreground transition-colors"
+          variant="ghost"
+          size="sm"
           aria-label="Limpar busca"
+          className="absolute right-3 p-0 text-muted hover:text-foreground hover:bg-transparent [&>svg]:size-3.5"
         >
           <X size={14} />
-        </button>
+        </Button>
       ) : (
         <Search
           size={16}

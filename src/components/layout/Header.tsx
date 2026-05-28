@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Heart } from 'lucide-react'
 import { useThemeStore } from '@/lib/store/theme'
+import { Button } from '@/components/ui/Button'
 
 export function Header() {
   const { theme } = useThemeStore()
@@ -20,13 +21,12 @@ export function Header() {
             className="object-contain"
           />
         </Link>
-        <Link
-          href="/favorites"
-          className="flex items-center gap-2 text-body text-cyan-primary border border-cyan-primary rounded-full px-4 py-1.5 hover:bg-cyan-primary/10 transition-colors"
-        >
-          <Heart size={16} />
-          <span className="hidden sm:inline">Lista de favoritos</span>
-        </Link>
+        <Button variant="secondary" size="sm" asChild className="px-4 py-1.5">
+          <Link href="/favorites">
+            <Heart size={16} />
+            <span className="hidden sm:inline">Lista de favoritos</span>
+          </Link>
+        </Button>
       </div>
     </header>
   )

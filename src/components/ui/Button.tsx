@@ -16,7 +16,7 @@ const variantStyles: Record<Variant, string> = {
   primary: 'bg-cyan-primary text-white hover:bg-cyan-secondary',
   secondary: 'border border-cyan-primary text-cyan-primary hover:bg-cyan-primary/10',
   ghost: 'text-cyan-primary hover:bg-cyan-primary/10',
-  surface: 'bg-white text-foreground hover:bg-gray-50 dark:bg-bg-surface dark:text-muted dark:hover:bg-bg-surface dark:hover:text-foreground',
+  surface: 'bg-transparent text-foreground hover:bg-gray-50 dark:bg-bg-surface dark:text-muted dark:hover:bg-bg-surface dark:hover:text-foreground',
 }
 
 const sizeStyles: Record<Size, string> = {

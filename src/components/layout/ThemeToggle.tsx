@@ -3,6 +3,7 @@
 import { Moon, Sun } from 'lucide-react'
 import { useThemeStore } from '@/lib/store/theme'
 import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/Button'
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useThemeStore()
@@ -10,26 +11,34 @@ export function ThemeToggle() {
 
   return (
     <div className="inline-flex w-fit rounded-full bg-bg-surface overflow-hidden">
-      <button
+      <Button
         onClick={() => !isDark && toggleTheme()}
+        variant="ghost"
+        size="sm"
         className={cn(
-          'flex items-center gap-1.5 px-3 py-1.5 text-body transition-colors',
-          isDark ? 'bg-bg-surface text-foreground' : 'text-muted hover:text-foreground'
+          'px-3 py-1.5 rounded-none [&>svg]:size-3',
+          isDark
+            ? 'bg-bg-surface text-foreground hover:bg-bg-surface hover:text-foreground'
+            : 'text-muted hover:text-foreground hover:bg-transparent'
         )}
       >
         <Moon size={12} />
         <span>Escuro</span>
-      </button>
-      <button
+      </Button>
+      <Button
         onClick={() => isDark && toggleTheme()}
+        variant="ghost"
+        size="sm"
         className={cn(
-          'flex items-center gap-1.5 px-3 py-1.5 text-body transition-colors',
-          !isDark ? 'bg-cyan-primary text-white' : 'text-muted hover:text-foreground'
+          'px-3 py-1.5 rounded-none [&>svg]:size-3',
+          !isDark
+            ? 'bg-cyan-primary text-white hover:bg-cyan-secondary hover:text-white'
+            : 'text-muted hover:text-foreground hover:bg-transparent'
         )}
       >
         <Sun size={12} />
         <span>Claro</span>
-      </button>
+      </Button>
     </div>
   )
 }

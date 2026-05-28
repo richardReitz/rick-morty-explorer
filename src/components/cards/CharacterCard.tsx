@@ -22,7 +22,7 @@ export function CharacterCard({ character }: { character: Character }) {
   }
 
   return (
-    <div className="bg-bg-secondary rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow p-4">
+    <div className="bg-bg-secondary hover:bg-bg-surface rounded-2xl overflow-hidden transition-colors p-4">
       <div className="p-3 dark:p-0">
         <div className="relative aspect-square overflow-hidden rounded-2xl ring-2 ring-inset ring-cyan-primary dark:ring-0">
           <Image
