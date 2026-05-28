@@ -17,6 +17,7 @@ const config: Config = {
         'cyan-secondary': '#42B4CA',
         'lime-brand': '#BFDE42',
         'foreground': 'var(--foreground)',
+        'foreground-strong': 'var(--foreground-strong)',
         'muted': 'var(--muted)',
       },
       fontSize: {

@@ -20,7 +20,7 @@ const tabs: { value: FilterTab; label: string; Icon: React.ElementType }[] = [
 export function FilterTabs({ active, onChange }: FilterTabsProps) {
   return (
     <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
-      <span className="text-body text-muted whitespace-nowrap flex-shrink-0">Filtrar por:</span>
+      <span className="text-body text-foreground-strong whitespace-nowrap flex-shrink-0">Filtrar por:</span>
       {tabs.map(({ value, label, Icon }) => (
         <Button
           key={value}

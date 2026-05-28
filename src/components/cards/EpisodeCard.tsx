@@ -16,8 +16,8 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
   return (
     <div className="bg-bg-secondary hover:bg-bg-surface rounded-2xl p-4 flex flex-col gap-3 transition-colors">
       <div className="flex items-center gap-2">
-        <TvMinimalPlay size={20} className="text-foreground flex-shrink-0" />
-        <span className="font-normal text-foreground text-h4 line-clamp-1">
+        <TvMinimalPlay size={20} className="text-foreground-strong flex-shrink-0" />
+        <span className="font-normal text-foreground-strong text-h4 line-clamp-1">
           {episode.name} | {episode.episode}
         </span>
       </div>

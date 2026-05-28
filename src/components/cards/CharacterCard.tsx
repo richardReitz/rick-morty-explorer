@@ -36,19 +36,19 @@ export function CharacterCard({ character }: { character: Character }) {
       </div>
       <div className="pt-4 flex flex-col gap-2">
         <div className="flex justify-between gap-3">
-          <h4 className="text-h4 font-bold text-foreground">{character.name}</h4>
+          <h4 className="text-h4 font-bold text-foreground-strong">{character.name}</h4>
           <FavoriteButton item={favoriteItem} size='lg'/>
         </div>
-        <div className="flex items-center gap-1.5 text-body text-muted">
-          <Activity size={12} className="flex-shrink-0" />
+        <div className="flex items-center gap-1.5 text-body text-foreground-strong">
+          <Activity size={16} className="flex-shrink-0 text-lime-brand" />
           <span>{statusLabel[character.status]}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-body text-muted">
-          <User size={12} className="flex-shrink-0" />
+        <div className="flex items-center gap-1.5 text-body text-foreground-strong">
+          <User size={16} className="flex-shrink-0" />
           <span>{character.species}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-body text-muted">
-          <Globe size={12} className="flex-shrink-0" />
+        <div className="flex items-center gap-1.5 text-body text-foreground-strong">
+          <Globe size={16} className="flex-shrink-0" />
           <span className="truncate">{character.origin.name}</span>
         </div>
         <div className="flex justify-end mt-6">

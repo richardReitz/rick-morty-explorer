@@ -10,6 +10,7 @@
   --cyan-secondary: #42B4CA;
   --lime: #BFDE42;
   --foreground: #FFFFFF;
+  --foreground-strong: #FFFFFF;
   --muted: rgba(255, 255, 255, 0.5);
 }
 
@@ -18,6 +19,7 @@
   --bg-secondary: #EBEBEB;
   --bg-surface: #DEDEDE;
   --foreground: #1A1A1A;
+  --foreground-strong: #313234;
   --muted: rgba(26, 26, 26, 0.5);
 }
 
