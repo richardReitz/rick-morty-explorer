@@ -165,36 +165,17 @@ export function HomePageClient() {
             <section className="transition-opacity duration-200">
               <SectionHeader title="Localizações" href="/locations" />
               {isLoadingLocations ? (
-                <div
-                  className={
-                    isSearching
-                      ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'
-                      : 'flex gap-4 overflow-x-auto pb-2'
-                  }
-                >
-                  {Array.from({ length: 7 }).map((_, i) => (
-                    <div
-                      key={i}
-                      className={isSearching ? '' : 'min-w-[200px] flex-shrink-0'}
-                    >
-                      <SkeletonCard type="location" />
-                    </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <SkeletonCard key={i} type="location" />
                   ))}
                 </div>
               ) : locations.length === 0 ? (
                 <EmptyState />
-              ) : isSearching ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {locations.map((loc) => (
-                    <LocationCard key={loc.id} location={loc} />
-                  ))}
-                </div>
               ) : (
-                <div className="flex gap-4 overflow-x-auto pb-2">
-                  {locations.slice(0, 7).map((loc) => (
-                    <div key={loc.id} className="min-w-[200px] flex-shrink-0">
-                      <LocationCard location={loc} />
-                    </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+                  {(isSearching ? locations : locations.slice(0, 6)).map((loc) => (
+                    <LocationCard key={loc.id} location={loc} />
                   ))}
                 </div>
               )}
