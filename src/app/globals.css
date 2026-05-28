@@ -10,6 +10,7 @@
   --cyan-secondary: #42B4CA;
   --lime: #BFDE42;
   --foreground: #FFFFFF;
+  --muted: rgba(255, 255, 255, 0.5);
 }
 
 .light {
@@ -17,6 +18,7 @@
   --bg-secondary: #EBEBEB;
   --bg-surface: #DEDEDE;
   --foreground: #1A1A1A;
+  --muted: rgba(26, 26, 26, 0.5);
 }
 
 body {

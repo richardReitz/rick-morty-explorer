@@ -10,12 +10,14 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#1A1A1A',
-        'bg-secondary': '#1E1E20',
-        'bg-surface': '#313234',
+        'bg-primary': 'var(--bg-primary)',
+        'bg-secondary': 'var(--bg-secondary)',
+        'bg-surface': 'var(--bg-surface)',
         'cyan-primary': '#11B0C8',
         'cyan-secondary': '#42B4CA',
         'lime-brand': '#BFDE42',
+        'foreground': 'var(--foreground)',
+        'muted': 'var(--muted)',
       },
       fontSize: {
         h1: ['48px', { lineHeight: '100%', fontWeight: '700' }],
