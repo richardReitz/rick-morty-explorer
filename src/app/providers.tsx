@@ -1,0 +1,18 @@
+'use client'
+
+import { useState } from 'react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { useThemeStore } from '@/lib/store/theme'
+
+export default function Providers({ children }: { children: React.ReactNode }) {
+  const [queryClient] = useState(() => new QueryClient())
+  const { theme } = useThemeStore()
+
+  return (
+    <div className={theme === 'dark' ? 'dark' : 'light'}>
+      <QueryClientProvider client={queryClient}>
+        {children}
+      </QueryClientProvider>
+    </div>
+  )
+}
