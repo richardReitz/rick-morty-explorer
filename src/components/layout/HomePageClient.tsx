@@ -1,17 +1,13 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Hero, MainLayout } from '@/components/layout'
 import {
   SearchBar,
   FilterTabs,
-  SectionHeader,
-  SkeletonCard,
-  EmptyState,
   type FilterTab,
 } from '@/components/ui'
-import { CharacterCard, EpisodeCard, LocationCard } from '@/components/cards'
 import { useDebounce } from '@/lib/hooks/useDebounce'
 import { getCharacters } from '@/lib/api/characters'
 import { getEpisodes } from '@/lib/api/episodes'
@@ -21,7 +17,6 @@ export function HomePageClient() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeTab, setActiveTab] = useState<FilterTab | null>(null)
   const debouncedQuery = useDebounce(searchQuery, 300)
-  const charactersSectionRef = useRef<HTMLElement>(null)
 
   const { data: charactersData, isLoading: isLoadingCharacters } = useQuery({
     queryKey: ['characters', debouncedQuery],
@@ -46,16 +41,9 @@ export function HomePageClient() {
   const locations = locationsData?.results ?? []
   const isSearching = debouncedQuery.length > 0
 
-  function handleRickSanchezFilter() {
-    setSearchQuery('Rick Sanchez')
-    setTimeout(() => {
-      charactersSectionRef.current?.scrollIntoView({ behavior: 'smooth' })
-    }, 350)
-  }
-
   return (
     <MainLayout>
-      <Hero onAccentClick={handleRickSanchezFilter} />
+      <Hero />
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12 py-12">
@@ -68,72 +56,7 @@ export function HomePageClient() {
             <FilterTabs active={activeTab} onChange={setActiveTab} />
           </section>
 
-          {(activeTab === null || activeTab === 'characters') && (
-            <section
-              ref={charactersSectionRef}
-              id="characters-section"
-              className="transition-opacity duration-200"
-            >
-              <SectionHeader title="Personagens" href="/characters" />
-              {isLoadingCharacters ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {Array.from({ length: 8 }).map((_, i) => (
-                    <SkeletonCard key={i} type="character" />
-                  ))}
-                </div>
-              ) : characters.length === 0 ? (
-                <EmptyState />
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {(isSearching ? characters : characters.slice(0, 8)).map((char) => (
-                    <CharacterCard key={char.id} character={char} />
-                  ))}
-                </div>
-              )}
-            </section>
-          )}
-
-          {(activeTab === null || activeTab === 'episodes') && (
-            <section className="transition-opacity duration-200">
-              <SectionHeader title="Episódios" href="/episodes" />
-              {isLoadingEpisodes ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <SkeletonCard key={i} type="episode" />
-                  ))}
-                </div>
-              ) : episodes.length === 0 ? (
-                <EmptyState />
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-                  {(isSearching ? episodes : episodes.slice(0, 5)).map((ep) => (
-                    <EpisodeCard key={ep.id} episode={ep} />
-                  ))}
-                </div>
-              )}
-            </section>
-          )}
-
-          {(activeTab === null || activeTab === 'locations') && (
-            <section className="transition-opacity duration-200">
-              <SectionHeader title="Localizações" href="/locations" />
-              {isLoadingLocations ? (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {Array.from({ length: 6 }).map((_, i) => (
-                    <SkeletonCard key={i} type="location" />
-                  ))}
-                </div>
-              ) : locations.length === 0 ? (
-                <EmptyState />
-              ) : (
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-                  {(isSearching ? locations : locations.slice(0, 6)).map((loc) => (
-                    <LocationCard key={loc.id} location={loc} />
-                  ))}
-                </div>
-              )}
-            </section>
-          )}
+          {/* Seções de lista serão adicionadas na Task 6 */}
         </div>
       </div>
     </MainLayout>
