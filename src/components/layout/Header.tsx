@@ -10,7 +10,7 @@ export function Header() {
   const { theme } = useThemeStore()
 
   return (
-    <header className="sticky top-0 z-50 bg-bg-secondary border-b border-bg-surface">
+    <header className="sticky top-0 z-50 bg-white dark:bg-black">
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
         <Link href="/">
           <Image
