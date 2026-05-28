@@ -25,6 +25,8 @@ export function FavoriteButton({ item, size = 'sm' }: FavoriteButtonProps) {
     }
   }
 
+  const iconSize = size === 'lg' ? 48 : 32
+
   return (
     <Button
       onClick={toggle}
@@ -33,11 +35,12 @@ export function FavoriteButton({ item, size = 'sm' }: FavoriteButtonProps) {
       aria-label={favorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
       className={cn(
         'p-0 active:scale-90 hover:bg-transparent',
-        size === 'lg' ? 'size-12 [&>svg]:size-12' : 'size-8 [&>svg]:size-8',
+        size === 'lg' ? 'size-12' : 'size-8',
         favorited ? 'text-cyan-primary' : 'text-muted hover:text-cyan-primary'
       )}
     >
       <Heart
+        style={{ width: iconSize, height: iconSize }}
         fill={favorited ? 'currentColor' : 'none'}
         className="transition-colors"
       />

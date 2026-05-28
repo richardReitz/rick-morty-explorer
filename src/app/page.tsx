@@ -1,5 +1,5 @@
+import { HomePageClient } from '@/components/layout'
 import type { Metadata } from 'next'
-import { HomePageClient } from './_components/HomePageClient'
 
 export const metadata: Metadata = {
   title: 'Rick & Morty App',
