@@ -25,7 +25,7 @@ export function FavoriteButton({ item }: { item: FavoriteItem }) {
       aria-label={favorited ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
       className={cn(
         'flex items-center justify-center w-9 h-9 rounded-full bg-bg-surface transition-all duration-150 active:scale-90',
-        favorited ? 'text-lime-brand' : 'text-muted hover:text-lime-brand'
+        favorited ? 'text-cyan-primary' : 'text-muted hover:text-cyan-primary'
       )}
     >
       <Heart

@@ -1,7 +1,7 @@
 'use client'
 
 import { Users, MapPin, Tv } from 'lucide-react'
-import { cn } from '@/lib/utils'
+import { Button } from './Button'
 
 export type FilterTab = 'characters' | 'locations' | 'episodes'
 
@@ -18,21 +18,19 @@ const tabs: { value: FilterTab; label: string; Icon: React.ElementType }[] = [
 
 export function FilterTabs({ active, onChange }: FilterTabsProps) {
   return (
-    <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
+      <span className="text-body text-muted whitespace-nowrap flex-shrink-0">Filtrar por:</span>
       {tabs.map(({ value, label, Icon }) => (
-        <button
+        <Button
           key={value}
+          variant={active === value ? 'primary' : 'surface'}
+          size="sm"
           onClick={() => onChange(value)}
-          className={cn(
-            'flex items-center gap-1.5 px-4 py-2 rounded-full text-body font-medium whitespace-nowrap transition-colors flex-shrink-0',
-            active === value
-              ? 'bg-cyan-primary text-white'
-              : 'bg-bg-surface text-muted hover:text-foreground'
-          )}
+          className="px-4 py-2 whitespace-nowrap flex-shrink-0"
         >
-          <Icon size={14} />
+          <Icon />
           {label}
-        </button>
+        </Button>
       ))}
     </div>
   )

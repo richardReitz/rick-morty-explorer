@@ -4,26 +4,33 @@ import { useState, useEffect, useRef } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { MainLayout } from '@/components/layout'
+import { ThemeToggle } from '@/components/layout/ThemeToggle'
 import {
   SearchBar,
   FilterTabs,
   SectionHeader,
   SkeletonCard,
   EmptyState,
-  Button,
   type FilterTab,
 } from '@/components/ui'
 import { CharacterCard, EpisodeCard, LocationCard } from '@/components/cards'
 import { useDebounce } from '@/lib/hooks/useDebounce'
+import { useThemeStore } from '@/lib/store/theme'
 import { getCharacters } from '@/lib/api/characters'
 import { getEpisodes } from '@/lib/api/episodes'
 import { getLocations } from '@/lib/api/locations'
+
+const heroText = {
+  dark: 'Ai sim, Porr#@%&*',
+  light: 'Wubba Lubba Dub Dub! Cuidado com os olhos.',
+}
 
 export function HomePageClient() {
   const [searchQuery, setSearchQuery] = useState('')
   const [activeTab, setActiveTab] = useState<FilterTab>('characters')
   const debouncedQuery = useDebounce(searchQuery, 300)
   const charactersSectionRef = useRef<HTMLElement>(null)
+  const { theme } = useThemeStore()
 
   useEffect(() => {
     setActiveTab('characters')
@@ -61,46 +68,48 @@ export function HomePageClient() {
 
   return (
     <MainLayout>
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero */}
-        <section className="my-8 bg-gradient-to-br from-bg-primary to-bg-secondary border border-bg-surface rounded-2xl px-8 lg:px-16 py-16 flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
-          <div className="flex-1 space-y-6 text-center lg:text-left">
-            <h1 className="text-h1 text-foreground">
+      {/* Hero */}
+      <section className="border-b border-cyan-primary dark:bg-black">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+          <div className="flex-1 space-y-6">
+            <h1 className="text-h1 text-foreground underline underline-offset-4 decoration-foreground">
               Saiba tudo em um só{' '}
-              <span className="text-cyan-primary">lugar.</span>
+              <span className="text-cyan-primary decoration-cyan-primary">lugar.</span>
             </h1>
             <p className="text-h4 text-muted">
               Personagens, localizações, episódios e muito mais.
             </p>
-            <div className="flex gap-3 justify-center lg:justify-start">
-              <Button variant="primary" size="md">Entrar</Button>
-              <Button variant="secondary" size="md">Criar</Button>
-            </div>
+            <ThemeToggle />
             <button
               onClick={handleRickSanchezFilter}
-              className="text-body text-cyan-primary hover:underline underline-offset-2 transition-all block mx-auto lg:mx-0 w-fit"
+              className="text-body text-cyan-primary hover:underline underline-offset-2 transition-all block w-fit"
             >
-              Veja todas as Rick Sanchez com os filtros
+              {heroText[theme]}
             </button>
           </div>
-          <div className="hidden lg:block relative w-64 h-64 flex-shrink-0">
+          <div className="relative flex-shrink-0 w-[340px] h-[320px] lg:w-[480px] lg:h-[420px]">
             <Image
-              src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+              src={theme === 'dark' ? '/HighlightImage.png' : '/HighLightImage-w.png'}
               alt="Rick Sanchez"
               fill
-              className="object-cover rounded-full dark:opacity-60 dark:brightness-75"
-              sizes="256px"
+              className="object-contain"
+              sizes="(max-width: 1024px) 340px, 480px"
+              priority
             />
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Search + Filters + Sections */}
-        <div className="space-y-12 pb-16">
-          <section className="space-y-3">
-            <SearchBar value={searchQuery} onChange={setSearchQuery} />
-            {isSearching && (
-              <FilterTabs active={activeTab} onChange={setActiveTab} />
-            )}
+      {/* Search + Filters + Sections */}
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="space-y-12 py-12">
+          <section className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <SearchBar
+              value={searchQuery}
+              onChange={setSearchQuery}
+              className="w-full sm:w-80 lg:w-96"
+            />
+            <FilterTabs active={activeTab} onChange={setActiveTab} />
           </section>
 
           {/* Characters */}

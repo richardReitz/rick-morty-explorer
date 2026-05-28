@@ -2,7 +2,7 @@ import React from 'react'
 import { Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-type Variant = 'primary' | 'secondary' | 'ghost'
+type Variant = 'primary' | 'secondary' | 'ghost' | 'surface'
 type Size = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -16,12 +16,13 @@ const variantStyles: Record<Variant, string> = {
   primary: 'bg-cyan-primary text-white hover:bg-cyan-secondary',
   secondary: 'border border-cyan-primary text-cyan-primary hover:bg-cyan-primary/10',
   ghost: 'text-cyan-primary hover:bg-cyan-primary/10',
+  surface: 'bg-bg-surface text-muted hover:text-foreground',
 }
 
 const sizeStyles: Record<Size, string> = {
-  sm: 'h-8 px-3 text-body rounded-lg',
-  md: 'h-10 px-4 text-h4 rounded-lg',
-  lg: 'h-12 px-6 text-h3 rounded-xl',
+  sm: 'p-1.5 text-body rounded-full',
+  md: 'h-10 px-5 text-h4 rounded-full',
+  lg: 'h-12 px-6 text-h3 rounded-full',
 }
 
 export function Button({
@@ -35,7 +36,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const classes = cn(
-    'inline-flex items-center justify-center gap-2 font-medium transition-colors cursor-pointer',
+    'inline-flex items-center justify-center gap-2 font-medium transition-colors cursor-pointer [&>svg]:size-5 [&>svg]:shrink-0',
     variantStyles[variant],
     sizeStyles[size],
     (disabled || loading) && 'opacity-50 cursor-not-allowed pointer-events-none',

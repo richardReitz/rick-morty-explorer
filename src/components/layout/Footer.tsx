@@ -1,9 +1,13 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { ChevronUp } from 'lucide-react'
+import { useThemeStore } from '@/lib/store/theme'
 
 export function Footer() {
+  const { theme } = useThemeStore()
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -11,8 +15,14 @@ export function Footer() {
   return (
     <footer className="bg-bg-secondary border-t border-bg-surface">
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between h-16">
-        <Link href="/" className="text-h4 font-bold text-cyan-primary">
-          Rick and Morty
+        <Link href="/">
+          <Image
+            src={theme === 'dark' ? '/LogoA.png' : '/LogoB.png'}
+            alt="Rick and Morty"
+            width={120}
+            height={40}
+            className="object-contain"
+          />
         </Link>
         <button
           onClick={scrollToTop}

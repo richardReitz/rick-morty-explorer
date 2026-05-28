@@ -9,7 +9,7 @@ export function ThemeToggle() {
   const isDark = theme === 'dark'
 
   return (
-    <div className="flex rounded-full bg-bg-surface overflow-hidden">
+    <div className="inline-flex w-fit rounded-full bg-bg-surface overflow-hidden">
       <button
         onClick={() => !isDark && toggleTheme()}
         className={cn(
@@ -24,7 +24,7 @@ export function ThemeToggle() {
         onClick={() => isDark && toggleTheme()}
         className={cn(
           'flex items-center gap-1.5 px-3 py-1.5 text-body transition-colors',
-          !isDark ? 'bg-bg-surface text-foreground' : 'text-muted hover:text-foreground'
+          !isDark ? 'bg-cyan-primary text-white' : 'text-muted hover:text-foreground'
         )}
       >
         <Sun size={12} />
