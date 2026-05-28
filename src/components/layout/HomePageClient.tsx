@@ -8,6 +8,7 @@ import {
   FilterTabs,
   type FilterTab,
 } from '@/components/ui'
+import { CharacterList, EpisodeList, LocationList } from '@/components/lists'
 import { useDebounce } from '@/lib/hooks/useDebounce'
 import { getCharacters } from '@/lib/api/characters'
 import { getEpisodes } from '@/lib/api/episodes'
@@ -56,7 +57,26 @@ export function HomePageClient() {
             <FilterTabs active={activeTab} onChange={setActiveTab} />
           </section>
 
-          {/* Seções de lista serão adicionadas na Task 6 */}
+          {(activeTab === null || activeTab === 'characters') && (
+            <CharacterList
+              items={isSearching ? characters : characters.slice(0, 8)}
+              isLoading={isLoadingCharacters}
+            />
+          )}
+
+          {(activeTab === null || activeTab === 'episodes') && (
+            <EpisodeList
+              items={isSearching ? episodes : episodes.slice(0, 5)}
+              isLoading={isLoadingEpisodes}
+            />
+          )}
+
+          {(activeTab === null || activeTab === 'locations') && (
+            <LocationList
+              items={isSearching ? locations : locations.slice(0, 6)}
+              isLoading={isLoadingLocations}
+            />
+          )}
         </div>
       </div>
     </MainLayout>
