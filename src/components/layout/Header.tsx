@@ -15,7 +15,7 @@ export function Header() {
             alt="Rick and Morty"
             width={164}
             height={44}
-            className="object-contain"
+            className="w-[120px] sm:w-[164px] h-auto object-contain"
           />
         </Link>
         <Button variant="primary" size="sm" asChild >

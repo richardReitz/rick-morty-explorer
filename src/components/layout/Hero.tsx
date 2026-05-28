@@ -13,14 +13,14 @@ export function Hero({ onAccentClick }: HeroProps) {
   const isDark = theme === 'dark'
 
   return (
-    <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black">
+    <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
 
-        <div className="flex-1 flex flex-col justify-center">
-          <h1 className="text-h1 text-foreground">
+        <div className="flex-1 flex flex-col justify-center w-full">
+          <h1 className="text-[32px] sm:text-h1 text-foreground">
             Saiba tudo em
           </h1>
-          <h1 className="text-h1 text-foreground">
+          <h1 className="text-[32px] sm:text-h1 text-foreground">
             um só <span className='text-cyan-primary'>lugar.</span>
           </h1>
 

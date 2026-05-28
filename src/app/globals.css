@@ -27,4 +27,5 @@ body {
   background-color: var(--bg-primary);
   color: var(--foreground);
   transition: background-color 0.2s ease, color 0.2s ease;
+  overflow-x: hidden;
 }
