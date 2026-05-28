@@ -1,6 +1,7 @@
 'use client'
 
 import { Users, MapPin, Tv } from 'lucide-react'
+import { cn } from '@/lib/utils'
 import { Button } from './Button'
 
 export type FilterTab = 'characters' | 'locations' | 'episodes'
@@ -26,7 +27,7 @@ export function FilterTabs({ active, onChange }: FilterTabsProps) {
           variant={active === value ? 'primary' : 'surface'}
           size="sm"
           onClick={() => onChange(value)}
-          className="px-4 py-2 whitespace-nowrap flex-shrink-0"
+          className={cn('px-4 py-2 whitespace-nowrap flex-shrink-0', active !== value && 'dark:!bg-transparent dark:hover:!bg-foreground/5')}
         >
           <Icon />
           {label}

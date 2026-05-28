@@ -9,9 +9,9 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ title, href }: SectionHeaderProps) {
   return (
-    <div className="flex items-center justify-between mb-4">
+    <div className="flex items-center mb-4 gap-4">
       <h3 className="text-h3 font-bold text-foreground">{title}</h3>
-      <Button variant="secondary" size="sm" asChild>
+      <Button variant="primary" size="sm" asChild>
         <Link href={href}>
           <LayoutGrid size={14} />
           Ver todos

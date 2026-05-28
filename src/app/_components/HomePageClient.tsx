@@ -103,7 +103,7 @@ export function HomePageClient() {
       {/* Search + Filters + Sections */}
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12 py-12">
-          <section className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
