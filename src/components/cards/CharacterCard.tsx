@@ -20,6 +20,9 @@ export function CharacterCard({ character, onSelect }: { character: Character; o
     type: 'character' as const,
     name: character.name,
     image: character.image,
+    status: character.status,
+    species: character.species,
+    origin: character.origin,
   }
 
   return (

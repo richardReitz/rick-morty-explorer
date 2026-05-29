@@ -62,4 +62,7 @@ export interface FavoriteItem {
   type: 'character' | 'episode' | 'location'
   name: string
   image?: string
+  status?: 'Alive' | 'Dead' | 'unknown'
+  species?: string
+  origin?: Origin
 }
