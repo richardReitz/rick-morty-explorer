@@ -1,1 +1,7 @@
 export { CharacterIcon } from './CharacterIcon'
+export { HeartIcon } from './HeartIcon'
+export { GenderFemaleIcon } from './GenderFemaleIcon'
+export { GenderMaleIcon } from './GenderMaleIcon'
+export { SmileyBlankIcon } from './SmileyBlankIcon'
+export { AlienIcon } from './AlienIcon'
+export { PlanetIcon } from './PlanetIcon'
