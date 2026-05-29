@@ -26,6 +26,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
   return (
     <div className={cn('flex items-center justify-center gap-4 mt-16', className)}>
       <button
+        type="button"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}
         disabled={currentPage === 1}
         className="w-12 h-12 flex items-center justify-center rounded-full text-foreground hover:bg-bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
@@ -36,13 +37,15 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
 
       {pageRange.map((p) => (
         <button
+          type="button"
           key={p}
           onClick={() => onPageChange(p)}
-          className={`w-12 h-12 flex items-center justify-center rounded-full text-body font-medium transition-colors ${
+          className={cn(
+            'w-12 h-12 flex items-center justify-center rounded-full text-body font-medium transition-colors',
             p === currentPage
               ? 'bg-cyan-primary text-white border-2 border-cyan-primary'
               : 'bg-transparent text-foreground border-2 border-foreground hover:border-cyan-primary hover:text-cyan-primary'
-          }`}
+          )}
           aria-label={`Página ${p}`}
           aria-current={p === currentPage ? 'page' : undefined}
         >
@@ -51,6 +54,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
       ))}
 
       <button
+        type="button"
         onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
         disabled={currentPage === totalPages}
         className="w-12 h-12 flex items-center justify-center rounded-full text-foreground hover:bg-bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
