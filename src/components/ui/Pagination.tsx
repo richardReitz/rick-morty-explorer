@@ -24,7 +24,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className }:
   const pageRange = getPaginationRange(currentPage, totalPages)
 
   return (
-    <div className={cn('flex items-center justify-center gap-4 mt-16', className)}>
+    <div className={cn('flex items-center justify-center gap-4', className)}>
       <button
         type="button"
         onClick={() => onPageChange(Math.max(1, currentPage - 1))}

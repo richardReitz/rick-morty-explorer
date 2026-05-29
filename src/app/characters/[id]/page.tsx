@@ -60,7 +60,6 @@ export default function CharacterDetailPage() {
   const { data: character, isLoading: isLoadingCharacter } = useQuery({
     queryKey: ['character', characterId],
     queryFn: () => getCharacter(characterId),
-    staleTime: 1000 * 60 * 5,
   })
 
   const originId = character ? extractId(character.origin.url) : null
@@ -106,7 +105,6 @@ export default function CharacterDetailPage() {
 
   return (
     <MainLayout>
-      {/* Hero */}
       <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {isLoadingCharacter || !character ? (
@@ -114,7 +112,7 @@ export default function CharacterDetailPage() {
           ) : (
             <div className="flex flex-col sm:flex-row gap-16">
               <div className="flex-shrink-0">
-                <div className="relative w-full sm:w-[369px] h-[461px] rounded-lg overflow-hidden ring-2 ring-cyan-primary">
+                <div className="relative w-full sm:w-[360px] h-[440px] rounded-2xl overflow-hidden">
                   <Image
                     src={character.image}
                     alt={character.name}
@@ -126,18 +124,18 @@ export default function CharacterDetailPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-8 justify-center flex-1 min-w-0">
+              <div className="flex flex-col gap-8 flex-1 min-w-0">
                 <div className="flex items-center gap-4">
                   <h1 className="text-h1 font-bold text-foreground-strong">{character.name}</h1>
                   {heroFavoriteItem && <FavoriteButton item={heroFavoriteItem} size="lg" />}
                 </div>
 
-                <div className="flex items-center gap-2 text-foreground-strong text-body">
+                <div className="flex items-center gap-2 text-foreground-strong text-h4">
                   <Tv size={16} className="flex-shrink-0" />
                   <span>Participou de {character.episode.length} episódios</span>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-5 text-body text-foreground-strong mt-3">
+                <div className="flex flex-wrap items-center gap-5 text-h4 text-foreground-strong mt-3">
                   <div className="flex items-center gap-1.5">
                     <Activity size={16} className="flex-shrink-0 text-lime-brand" />
                     <span>{statusLabel[character.status]}</span>
@@ -152,7 +150,7 @@ export default function CharacterDetailPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-row gap-6 mt-2 self-end">
+                <div className="flex flex-row gap-6 mt-6 self-end">
                   {originLocation && (
                     <div className="flex-1">
                       <LocationCard location={originLocation} />
@@ -170,24 +168,26 @@ export default function CharacterDetailPage() {
         </div>
       </section>
 
-      {/* Separator */}
-      <div className="border-b border-cyan-primary" />
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16" ref={sectionRef}>
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={changePage}
+        />
 
-      {/* More characters */}
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-10" ref={sectionRef}>
-        <div className="flex items-center gap-3 mb-8">
+        <div className="flex items-center gap-3 my-16">
           <Users size={24} className="text-foreground flex-shrink-0" />
           <h3 className="text-h3 font-bold text-foreground">Mais personagens</h3>
         </div>
 
         {isLoadingCharacters ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {Array.from({ length: 12 }).map((_, i) => (
               <SkeletonCard key={i} type="character" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
             {otherCharacters.map((char) => (
               <CharacterCard key={char.id} character={char} />
             ))}
