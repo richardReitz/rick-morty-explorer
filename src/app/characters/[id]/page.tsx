@@ -6,8 +6,6 @@ import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import {
   Activity,
-  ChevronLeft,
-  ChevronRight,
   Dna,
   Tv,
   User,
@@ -15,7 +13,7 @@ import {
 } from 'lucide-react'
 import { MainLayout } from '@/components/layout'
 import { CharacterCard, LocationCard } from '@/components/cards'
-import { FavoriteButton, SkeletonCard } from '@/components/ui'
+import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getCharacter, getCharacters } from '@/lib/api/characters'
 import { getLocation } from '@/lib/api/locations'
 import type { Character } from '@/lib/types'
@@ -51,16 +49,6 @@ function HeroSkeleton() {
       </div>
     </div>
   )
-}
-
-const PAGE_WINDOW = 4
-
-function getPaginationRange(current: number, total: number): number[] {
-  const half = Math.floor(PAGE_WINDOW / 2)
-  let start = Math.max(1, current - half)
-  const end = Math.min(total, start + PAGE_WINDOW - 1)
-  start = Math.max(1, end - PAGE_WINDOW + 1)
-  return Array.from({ length: end - start + 1 }, (_, i) => start + i)
 }
 
 export default function CharacterDetailPage() {
@@ -101,7 +89,6 @@ export default function CharacterDetailPage() {
   const otherCharacters =
     charactersData?.results.filter((c) => c.id !== characterId).slice(0, 12) ?? []
   const totalPages = charactersData?.info.pages ?? 1
-  const pageRange = getPaginationRange(page, totalPages)
 
   function changePage(next: number) {
     setPage(next)
@@ -207,41 +194,11 @@ export default function CharacterDetailPage() {
           </div>
         )}
 
-        <div className="flex items-center justify-center gap-4 mt-16">
-          <button
-            onClick={() => changePage(Math.max(1, page - 1))}
-            disabled={page === 1}
-            className="w-12 h-12 flex items-center justify-center rounded-full text-foreground hover:bg-bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-            aria-label="Página anterior"
-          >
-            <ChevronLeft size={32} />
-          </button>
-
-          {pageRange.map((p) => (
-            <button
-              key={p}
-              onClick={() => changePage(p)}
-              className={`w-12 h-12 flex items-center justify-center rounded-full text-body font-medium transition-colors ${
-                p === page
-                  ? 'bg-cyan-primary text-white border-2 border-cyan-primary'
-                  : 'bg-transparent text-foreground border-2 border-foreground hover:border-cyan-primary hover:text-cyan-primary'
-              }`}
-              aria-label={`Página ${p}`}
-              aria-current={p === page ? 'page' : undefined}
-            >
-              {p}
-            </button>
-          ))}
-
-          <button
-            onClick={() => changePage(Math.min(totalPages, page + 1))}
-            disabled={page === totalPages}
-            className="w-12 h-12 flex items-center justify-center rounded-full text-foreground hover:bg-bg-surface disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
-            aria-label="Próxima página"
-          >
-            <ChevronRight size={32} />
-          </button>
-        </div>
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={changePage}
+        />
       </div>
     </MainLayout>
   )
