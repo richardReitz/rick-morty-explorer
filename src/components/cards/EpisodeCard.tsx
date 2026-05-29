@@ -6,7 +6,7 @@ import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
 import type { Episode } from '@/lib/types'
 
-export function EpisodeCard({ episode }: { episode: Episode }) {
+export function EpisodeCard({ episode, onSelect }: { episode: Episode; onSelect?: () => void }) {
   const favoriteItem = {
     id: episode.id,
     type: 'episode' as const,
@@ -22,12 +22,19 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
         </span>
       </div>
       <div className="flex items-center justify-between">
-        <Button variant="surface" size="sm" asChild>
-          <Link href={`/episodes/${episode.id}`}>
+        {onSelect ? (
+          <Button variant="surface" size="sm" onClick={onSelect}>
             <Info size={15} />
             Saiba mais
-          </Link>
-        </Button>
+          </Button>
+        ) : (
+          <Button variant="surface" size="sm" asChild>
+            <Link href={`/episodes/${episode.id}`}>
+              <Info size={15} />
+              Saiba mais
+            </Link>
+          </Button>
+        )}
         <FavoriteButton item={favoriteItem} />
       </div>
     </div>

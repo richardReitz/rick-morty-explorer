@@ -26,6 +26,10 @@ export function Hero() {
           <div className="mt-16">
             <ThemeToggle />
           </div>
+
+          <p className="mt-6 text-h4 text-cyan-primary">
+            {theme === 'dark' ? "Ai sim, Porr#@%&*" : "Wubba Lubba Dub Dub! Cuidado com os olhos."}
+          </p>
         </div>
 
         <div className="relative flex-shrink-0 w-full lg:w-[435px] h-[300px] lg:h-[434px]">

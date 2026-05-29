@@ -6,7 +6,7 @@ import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
 import type { LocationItem } from '@/lib/types'
 
-export function LocationCard({ location }: { location: LocationItem }) {
+export function LocationCard({ location, onSelect }: { location: LocationItem; onSelect?: () => void }) {
   const favoriteItem = {
     id: location.id,
     type: 'location' as const,
@@ -24,12 +24,19 @@ export function LocationCard({ location }: { location: LocationItem }) {
           <p className="text-h4 text-foreground-strong mb-1">{location.type || 'Planet'}</p>
           <h4 className="text-h4 text-cyan-primary truncate">{location.name}</h4>
         </div>
-        <Button variant="surface" size="sm" asChild >
-          <Link href={`/locations/${location.id}`}>
+        {onSelect ? (
+          <Button variant="surface" size="sm" onClick={onSelect}>
             <Info size={14} />
             Saiba mais
-          </Link>
-        </Button>
+          </Button>
+        ) : (
+          <Button variant="surface" size="sm" asChild>
+            <Link href={`/locations/${location.id}`}>
+              <Info size={14} />
+              Saiba mais
+            </Link>
+          </Button>
+        )}
         <FavoriteButton item={favoriteItem} size='sm' />
       </div>
     </div>

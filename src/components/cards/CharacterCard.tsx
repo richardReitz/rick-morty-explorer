@@ -13,7 +13,7 @@ const statusLabel: Record<Character['status'], string> = {
   unknown: 'Desconhecido',
 }
 
-export function CharacterCard({ character }: { character: Character }) {
+export function CharacterCard({ character, onSelect }: { character: Character; onSelect?: () => void }) {
   const favoriteItem = {
     id: character.id,
     type: 'character' as const,
@@ -52,12 +52,19 @@ export function CharacterCard({ character }: { character: Character }) {
           <span className="truncate">{character.origin.name}</span>
         </div>
         <div className="flex justify-end mt-6">
-          <Button variant="surface" size="sm" asChild>
-            <Link href={`/characters/${character.id}`}>
+          {onSelect ? (
+            <Button variant="surface" size="sm" onClick={onSelect}>
               <Info size={20} />
               Saiba mais
-            </Link>
-          </Button>
+            </Button>
+          ) : (
+            <Button variant="surface" size="sm" asChild>
+              <Link href={`/characters/${character.id}`}>
+                <Info size={20} />
+                Saiba mais
+              </Link>
+            </Button>
+          )}
         </div>
       </div>
     </div>
