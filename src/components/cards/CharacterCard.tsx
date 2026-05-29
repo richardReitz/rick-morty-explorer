@@ -59,7 +59,7 @@ export function CharacterCard({ character, onSelect }: { character: Character; o
             </Button>
           ) : (
             <Button variant="surface" size="sm" asChild>
-              <Link href={`/characters/${character.id}`}>
+              <Link href={`/characters?id=${character.id}`}>
                 <Info size={20} />
                 Saiba mais
               </Link>

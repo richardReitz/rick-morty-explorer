@@ -31,7 +31,7 @@ export function LocationCard({ location, onSelect }: { location: LocationItem; o
           </Button>
         ) : (
           <Button variant="surface" size="sm" asChild>
-            <Link href={`/locations/${location.id}`}>
+            <Link href={`/locations?id=${location.id}`}>
               <Info size={14} />
               Saiba mais
             </Link>

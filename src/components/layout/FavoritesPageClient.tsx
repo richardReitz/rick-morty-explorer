@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Heart, LayoutGrid } from 'lucide-react'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { FilterTabs, type FilterTab, EmptyState, Button } from '@/components/ui'
@@ -106,9 +107,11 @@ export function FavoritesPageClient() {
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
                 {activeTab !== 'characters' && (
-                  <Button variant="primary" size="sm" onClick={() => setActiveTab('characters')}>
-                    <LayoutGrid size={14} />
-                    Ver todos
+                  <Button variant="primary" size="sm" asChild>
+                    <Link href="/characters">
+                      <LayoutGrid size={14} />
+                      Ver todos
+                    </Link>
                   </Button>
                 )}
               </div>
@@ -129,9 +132,11 @@ export function FavoritesPageClient() {
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Episódios</h3>
                 {activeTab !== 'episodes' && (
-                  <Button variant="primary" size="sm" onClick={() => setActiveTab('episodes')}>
-                    <LayoutGrid size={14} />
-                    Ver todos
+                  <Button variant="primary" size="sm" asChild>
+                    <Link href="/episodes">
+                      <LayoutGrid size={14} />
+                      Ver todos
+                    </Link>
                   </Button>
                 )}
               </div>
@@ -154,9 +159,11 @@ export function FavoritesPageClient() {
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Localizações</h3>
                 {activeTab !== 'locations' && (
-                  <Button variant="primary" size="sm" onClick={() => setActiveTab('locations')}>
-                    <LayoutGrid size={14} />
-                    Ver todos
+                  <Button variant="primary" size="sm" asChild>
+                    <Link href="/locations">
+                      <LayoutGrid size={14} />
+                      Ver todos
+                    </Link>
                   </Button>
                 )}
               </div>

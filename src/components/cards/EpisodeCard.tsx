@@ -29,7 +29,7 @@ export function EpisodeCard({ episode, onSelect }: { episode: Episode; onSelect?
           </Button>
         ) : (
           <Button variant="surface" size="sm" asChild>
-            <Link href={`/episodes/${episode.id}`}>
+            <Link href={`/episodes?id=${episode.id}`}>
               <Info size={15} />
               Saiba mais
             </Link>
