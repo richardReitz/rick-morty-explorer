@@ -11,7 +11,6 @@ import { CharacterCard } from '@/components/cards/CharacterCard'
 import { EpisodeCard } from '@/components/cards/EpisodeCard'
 import { LocationCard } from '@/components/cards/LocationCard'
 import { useFavoritesStore } from '@/lib/store/favorites'
-import { useThemeStore } from '@/lib/store/theme'
 import type { Character, Episode, LocationItem, FavoriteItem } from '@/lib/types'
 
 function toCharacter(fav: FavoriteItem): Character {
@@ -58,7 +57,6 @@ function toLocation(fav: FavoriteItem): LocationItem {
 export function FavoritesPageClient() {
   const [activeTab, setActiveTab] = useState<FilterTab | null>(null)
   const { favorites } = useFavoritesStore()
-  const { theme } = useThemeStore()
 
   const characterFavs = favorites.filter((f) => f.type === 'character')
   const episodeFavs = favorites.filter((f) => f.type === 'episode')
@@ -77,7 +75,7 @@ export function FavoritesPageClient() {
       <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
           <div className="flex-1 flex flex-col justify-center w-full py-12 lg:py-0">
-            <HeartIcon size={56} className="text-cyan-primary mb-4" strokeWidth={1.5} />
+            <HeartIcon size={56} className="text-cyan-primary mb-4" strokeWidth={3} />
             <h1 className="text-[32px] sm:text-h1 text-foreground">Todos os seus</h1>
             <h1 className="text-[32px] sm:text-h1 text-foreground">
               <span className="text-cyan-primary">favoritos.</span>
@@ -86,10 +84,10 @@ export function FavoritesPageClient() {
           <div className="relative flex-shrink-0 w-full lg:w-[435px] h-[300px] lg:h-[434px]">
             <div className="absolute inset-0">
               <Image
-                src={theme === 'dark' ? '/HighlightImage.png' : '/HighLightImage-w.png'}
+                src="/FavoriteImage.png"
                 alt="Rick e Morty"
                 fill
-                className="object-cover"
+                className="object-contain"
                 priority
               />
             </div>

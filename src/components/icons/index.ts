@@ -1,4 +1,3 @@
-export { CharacterIcon } from './CharacterIcon'
 export { HeartIcon } from './HeartIcon'
 export { GenderFemaleIcon } from './GenderFemaleIcon'
 export { GenderMaleIcon } from './GenderMaleIcon'
