@@ -36,7 +36,7 @@ export function FavoriteButton({ item, size = 'sm' }: FavoriteButtonProps) {
       className={cn(
         'p-0 active:scale-90 hover:bg-transparent',
         size === 'lg' ? 'size-12' : 'size-8',
-        favorited ? 'text-cyan-primary' : 'text-muted hover:text-cyan-primary'
+        'text-cyan-primary'
       )}
     >
       <HeartIcon
