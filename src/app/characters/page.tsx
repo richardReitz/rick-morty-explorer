@@ -2,7 +2,7 @@
 
 import { Suspense, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import Image from 'next/image'
 import { Activity, Dna, Tv, User, Users } from 'lucide-react'
 import { MainLayout } from '@/components/layout'
@@ -80,6 +80,7 @@ function CharactersPageInner() {
     queryKey: ['characters', page],
     queryFn: () => getCharacters(page),
     staleTime: 1000 * 60 * 5,
+    placeholderData: keepPreviousData,
   })
 
   function handleSelect(id: number) {

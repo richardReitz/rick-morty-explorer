@@ -2,7 +2,7 @@
 
 import { Suspense, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import { Disc, Globe, Users } from 'lucide-react'
 import { MainLayout } from '@/components/layout'
 import { LocationCard } from '@/components/cards'
@@ -41,6 +41,7 @@ function LocationsPageInner() {
     queryKey: ['locations', page],
     queryFn: () => getLocations(page),
     staleTime: 1000 * 60 * 5,
+    placeholderData: keepPreviousData,
   })
 
   function handleSelect(id: number) {
