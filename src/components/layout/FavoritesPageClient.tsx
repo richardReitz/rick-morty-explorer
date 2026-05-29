@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart, LayoutGrid } from 'lucide-react'
+import { LayoutGrid } from 'lucide-react'
+import { HeartIcon } from '../icons'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { FilterTabs, type FilterTab, EmptyState, Button } from '@/components/ui'
 import { CharacterCard } from '@/components/cards/CharacterCard'
@@ -76,7 +77,7 @@ export function FavoritesPageClient() {
       <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
           <div className="flex-1 flex flex-col justify-center w-full py-12 lg:py-0">
-            <Heart size={40} className="text-foreground mb-4" strokeWidth={1.5} />
+            <HeartIcon size={56} className="text-cyan-primary mb-4" strokeWidth={1.5} />
             <h1 className="text-[32px] sm:text-h1 text-foreground">Todos os seus</h1>
             <h1 className="text-[32px] sm:text-h1 text-foreground">
               <span className="text-cyan-primary">favoritos.</span>

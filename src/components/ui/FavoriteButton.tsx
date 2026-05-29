@@ -1,6 +1,6 @@
 'use client'
 
-import { Heart } from 'lucide-react'
+import { HeartIcon } from '../icons'
 import { useFavoritesStore } from '@/lib/store/favorites'
 import type { FavoriteItem } from '@/lib/types'
 import { cn } from '@/lib/utils'
@@ -39,7 +39,7 @@ export function FavoriteButton({ item, size = 'sm' }: FavoriteButtonProps) {
         favorited ? 'text-cyan-primary' : 'text-muted hover:text-cyan-primary'
       )}
     >
-      <Heart
+      <HeartIcon
         style={{ width: iconSize, height: iconSize }}
         fill={favorited ? 'currentColor' : 'none'}
         className="transition-colors"

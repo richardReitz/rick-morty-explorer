@@ -3,7 +3,8 @@
 import { Suspense, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
-import { Disc, Globe, Users } from 'lucide-react'
+import { Disc } from 'lucide-react'
+import { PlanetIcon, SmileyBlankIcon } from '@/components/icons'
 import { MainLayout } from '@/components/layout'
 import { LocationCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
@@ -70,7 +71,7 @@ function LocationsPageInner() {
               <HeroSkeleton />
             ) : (
               <div className="flex flex-col gap-6">
-                <Globe size={64} className="text-foreground-strong" />
+                <PlanetIcon size={64} className="text-foreground-strong" />
 
                 <div className="flex items-center gap-4">
                   <h1 className="text-h1 font-bold text-foreground-strong">{location.name}</h1>
@@ -79,7 +80,7 @@ function LocationsPageInner() {
 
                 <div className="flex items-center gap-6 text-h4 text-foreground-strong">
                   <div className="flex items-center gap-1.5">
-                    <Globe size={16} className="flex-shrink-0" />
+                    <PlanetIcon size={16} className="flex-shrink-0" />
                     <span>{location.type || 'Planet'}</span>
                   </div>
                   <div className="flex items-center gap-1.5">
@@ -89,7 +90,7 @@ function LocationsPageInner() {
                 </div>
 
                 <div className="flex items-center gap-1.5 text-h4 text-foreground-strong mt-10">
-                  <Users size={16} className="flex-shrink-0" />
+                  <SmileyBlankIcon size={16} className="flex-shrink-0" />
                   <span>{location.residents.length} Personagens localizados aqui</span>
                 </div>
               </div>
@@ -102,7 +103,7 @@ function LocationsPageInner() {
         <Pagination currentPage={page} totalPages={totalPages} onPageChange={changePage} />
 
         <div className="flex items-center gap-3 my-16">
-          <Globe size={24} className="text-foreground flex-shrink-0" />
+          <PlanetIcon size={24} className="text-foreground flex-shrink-0" />
           <h3 className="text-h3 font-bold text-foreground">Localizações</h3>
         </div>
 

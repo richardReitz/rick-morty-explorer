@@ -8,13 +8,15 @@ export interface Location {
   url: string
 }
 
+export type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown'
+
 export interface Character {
   id: number
   name: string
   status: 'Alive' | 'Dead' | 'unknown'
   species: string
   type: string
-  gender: 'Female' | 'Male' | 'Genderless' | 'unknown'
+  gender: CharacterGender
   origin: Origin
   location: Location
   image: string

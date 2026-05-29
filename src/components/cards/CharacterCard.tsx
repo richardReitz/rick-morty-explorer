@@ -2,9 +2,10 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Activity, Globe, Info, User } from 'lucide-react'
+import { Activity, Info } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
+import { AlienIcon, PlanetIcon } from '../icons'
 import type { Character } from '@/lib/types'
 
 const statusLabel: Record<Character['status'], string> = {
@@ -44,11 +45,11 @@ export function CharacterCard({ character, onSelect }: { character: Character; o
           <span>{statusLabel[character.status]}</span>
         </div>
         <div className="flex items-center gap-1.5 text-body text-foreground-strong">
-          <User size={16} className="flex-shrink-0" />
+          <AlienIcon size={16} className="flex-shrink-0" />
           <span>{character.species}</span>
         </div>
         <div className="flex items-center gap-1.5 text-body text-foreground-strong">
-          <Globe size={16} className="flex-shrink-0" />
+          <PlanetIcon size={16} className="flex-shrink-0" />
           <span className="truncate">{character.origin.name}</span>
         </div>
         <div className="flex justify-end mt-6">

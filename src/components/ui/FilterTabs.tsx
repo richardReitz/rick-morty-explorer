@@ -1,6 +1,7 @@
 'use client'
 
-import { Users, MapPin, Tv } from 'lucide-react'
+import { MapPin, TvMinimalPlay } from 'lucide-react'
+import { SmileyBlankIcon } from '../icons'
 import { cn } from '@/lib/utils'
 import { Button } from './Button'
 
@@ -12,9 +13,9 @@ interface FilterTabsProps {
 }
 
 const tabs: { value: FilterTab; label: string; Icon: React.ElementType }[] = [
-  { value: 'characters', label: 'Personagens', Icon: Users },
+  { value: 'characters', label: 'Personagens', Icon: SmileyBlankIcon },
   { value: 'locations', label: 'Localizações', Icon: MapPin },
-  { value: 'episodes', label: 'Episódios', Icon: Tv },
+  { value: 'episodes', label: 'Episódios', Icon: TvMinimalPlay },
 ]
 
 export function FilterTabs({ active, onChange }: FilterTabsProps) {

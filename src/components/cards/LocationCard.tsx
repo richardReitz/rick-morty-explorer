@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { Globe, Info } from 'lucide-react'
+import { Info } from 'lucide-react'
+import { PlanetIcon } from '../icons'
 import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
 import type { LocationItem } from '@/lib/types'
@@ -15,9 +16,9 @@ export function LocationCard({ location, onSelect }: { location: LocationItem; o
 
   return (
     <div className="relative pt-5 w-full">
-      <Globe
+      <PlanetIcon
         size={48}
-        className="text-foreground-strong absolute top-0 left-1/2 -translate-x-1/2 z-10"
+        className="text-foreground-strong absolute top-[-8px] left-1/2 -translate-x-1/2 z-10"
       />
       <div className="bg-bg-secondary hover:bg-bg-surface rounded-2xl px-4 pt-8 pb-4 flex flex-col items-center gap-3 text-center transition-colors">
         <div className="w-full">

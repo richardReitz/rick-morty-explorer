@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart } from 'lucide-react'
+import { HeartIcon } from '../icons'
 import { Button } from '@/components/ui/Button'
 
 export function Header() {
@@ -20,7 +20,7 @@ export function Header() {
         </Link>
         <Button variant="primary" size="sm" asChild >
           <Link href="/favorites">
-            <Heart size={16} />
+            <HeartIcon size={16} />
             <span className="hidden sm:inline">Lista de favoritos</span>
           </Link>
         </Button>

@@ -4,13 +4,14 @@ import { Suspense, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import Image from 'next/image'
-import { Activity, Dna, Tv, User, Users } from 'lucide-react'
+import { Activity, CircleQuestionMark, TvMinimalPlay } from 'lucide-react'
+import { AlienIcon, GenderFemaleIcon, GenderMaleIcon, SmileyBlankIcon } from '@/components/icons'
 import { MainLayout } from '@/components/layout'
 import { CharacterCard, LocationCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getCharacter, getCharacters } from '@/lib/api/characters'
 import { getLocation } from '@/lib/api/locations'
-import type { Character } from '@/lib/types'
+import type { Character, CharacterGender } from '@/lib/types'
 
 const statusLabel: Record<Character['status'], string> = {
   Alive: 'Vivo',
@@ -100,6 +101,13 @@ function CharactersPageInner() {
     ? { id: character.id, type: 'character' as const, name: character.name, image: character.image }
     : null
 
+  function renderGenderIcon(gender: CharacterGender): React.ReactNode {
+    if (gender === 'Male') return <GenderMaleIcon size={24} className="flex-shrink-0" />
+    if (gender === 'Female') return <GenderFemaleIcon size={24} className="flex-shrink-0" />
+
+    return <CircleQuestionMark size={24} className="flex-shrink-0" />;
+  }
+
   return (
     <MainLayout>
       {selectedId && (
@@ -129,21 +137,21 @@ function CharactersPageInner() {
                   </div>
 
                   <div className="flex items-center gap-2 text-foreground-strong text-h4">
-                    <Tv size={16} className="flex-shrink-0" />
+                    <TvMinimalPlay size={20} className="flex-shrink-0" />
                     <span>Participou de {character.episode.length} episódios</span>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-5 text-h4 text-foreground-strong mt-3">
                     <div className="flex items-center gap-1.5">
-                      <Activity size={16} className="flex-shrink-0 text-lime-brand" />
+                      <Activity size={24} className="flex-shrink-0 text-lime-brand" />
                       <span>{statusLabel[character.status]}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <User size={16} className="flex-shrink-0" />
+                      <AlienIcon size={24} className="flex-shrink-0" />
                       <span>{character.species}</span>
                     </div>
                     <div className="flex items-center gap-1.5">
-                      <Dna size={16} className="flex-shrink-0" />
+                      {renderGenderIcon(character.gender)}
                       <span>{character.gender}</span>
                     </div>
                   </div>
@@ -171,7 +179,7 @@ function CharactersPageInner() {
         <Pagination currentPage={page} totalPages={totalPages} onPageChange={changePage} />
 
         <div className="flex items-center gap-3 my-16">
-          <Users size={24} className="text-foreground flex-shrink-0" />
+          <SmileyBlankIcon size={24} className="text-foreground flex-shrink-0" />
           <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
         </div>
 

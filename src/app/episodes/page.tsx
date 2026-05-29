@@ -3,7 +3,8 @@
 import { Suspense, useRef, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
-import { TvMinimalPlay, Calendar, List, Users } from 'lucide-react'
+import { TvMinimalPlay, Calendar, ListVideo } from 'lucide-react'
+import { SmileyBlankIcon } from '@/components/icons'
 import { MainLayout } from '@/components/layout'
 import { EpisodeCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
@@ -79,17 +80,17 @@ function EpisodesPageInner() {
 
                 <div className="flex items-center gap-5 text-h4 text-foreground-strong">
                   <div className="flex items-center gap-2">
-                    <Calendar size={16} className="flex-shrink-0" />
+                    <Calendar size={24} className="flex-shrink-0" />
                     <span>{episode.air_date}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <List size={16} className="flex-shrink-0" />
+                    <ListVideo size={24} className="flex-shrink-0" />
                     <span>{episode.episode}</span>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2 text-h4 text-foreground-strong mt-10">
-                  <Users size={16} className="flex-shrink-0" />
+                  <SmileyBlankIcon size={24} className="flex-shrink-0" />
                   <span>{episode.characters.length} Personagens participaram deste episódio</span>
                 </div>
               </div>
