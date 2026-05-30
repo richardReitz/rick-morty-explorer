@@ -9,6 +9,7 @@ import { MainLayout } from '@/components/layout'
 import { EpisodeCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getEpisode, getEpisodes } from '@/lib/api/episodes'
+import { QUERY_STALE_TIME } from '@/lib/queryConfig'
 
 function HeroSkeleton() {
   return (
@@ -35,13 +36,13 @@ function EpisodesPageInner() {
     queryKey: ['episode', selectedId],
     queryFn: () => getEpisode(selectedId!),
     enabled: !!selectedId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: episodesData, isLoading: isLoadingEpisodes } = useQuery({
     queryKey: ['episodes', page],
     queryFn: () => getEpisodes(page),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
     placeholderData: keepPreviousData,
   })
 

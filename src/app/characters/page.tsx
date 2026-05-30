@@ -11,6 +11,7 @@ import { CharacterCard, LocationCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getCharacter, getCharacters } from '@/lib/api/characters'
 import { getLocation } from '@/lib/api/locations'
+import { QUERY_STALE_TIME } from '@/lib/queryConfig'
 import type { Character, CharacterGender } from '@/lib/types'
 
 const statusLabel: Record<Character['status'], string> = {
@@ -57,7 +58,7 @@ function CharactersPageInner() {
     queryKey: ['character', selectedId],
     queryFn: () => getCharacter(selectedId!),
     enabled: !!selectedId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const originId = character ? extractId(character.origin.url) : null
@@ -67,20 +68,20 @@ function CharactersPageInner() {
     queryKey: ['location', originId],
     queryFn: () => getLocation(originId!),
     enabled: !!originId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: currentLocation } = useQuery({
     queryKey: ['location', locationId],
     queryFn: () => getLocation(locationId!),
     enabled: !!locationId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: charactersData, isLoading: isLoadingCharacters } = useQuery({
     queryKey: ['characters', page],
     queryFn: () => getCharacters(page),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
     placeholderData: keepPreviousData,
   })
 

@@ -9,6 +9,7 @@ import { MainLayout } from '@/components/layout'
 import { LocationCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getLocation, getLocations } from '@/lib/api/locations'
+import { QUERY_STALE_TIME } from '@/lib/queryConfig'
 
 function HeroSkeleton() {
   return (
@@ -35,13 +36,13 @@ function LocationsPageInner() {
     queryKey: ['location', selectedId],
     queryFn: () => getLocation(selectedId!),
     enabled: !!selectedId,
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: locationsData, isLoading: isLoadingLocations } = useQuery({
     queryKey: ['locations', page],
     queryFn: () => getLocations(page),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
     placeholderData: keepPreviousData,
   })
 

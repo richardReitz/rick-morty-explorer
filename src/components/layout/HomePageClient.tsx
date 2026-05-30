@@ -13,6 +13,7 @@ import { useDebounce } from '@/lib/hooks/useDebounce'
 import { getCharacters } from '@/lib/api/characters'
 import { getEpisodes } from '@/lib/api/episodes'
 import { getLocations } from '@/lib/api/locations'
+import { QUERY_STALE_TIME } from '@/lib/queryConfig'
 
 export function HomePageClient() {
   const [searchQuery, setSearchQuery] = useState('')
@@ -22,19 +23,19 @@ export function HomePageClient() {
   const { data: charactersData, isLoading: isLoadingCharacters } = useQuery({
     queryKey: ['characters', debouncedQuery],
     queryFn: () => getCharacters(1, debouncedQuery || undefined),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: episodesData, isLoading: isLoadingEpisodes } = useQuery({
     queryKey: ['episodes', debouncedQuery],
     queryFn: () => getEpisodes(1, debouncedQuery || undefined),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const { data: locationsData, isLoading: isLoadingLocations } = useQuery({
     queryKey: ['locations', debouncedQuery],
     queryFn: () => getLocations(1, debouncedQuery || undefined),
-    staleTime: 1000 * 60 * 5,
+    staleTime: QUERY_STALE_TIME,
   })
 
   const characters = charactersData?.results ?? []
