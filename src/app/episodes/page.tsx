@@ -10,6 +10,7 @@ import { EpisodeCard } from '@/components/cards'
 import { FavoriteButton, Pagination, SkeletonCard } from '@/components/ui'
 import { getEpisode, getEpisodes } from '@/lib/api/episodes'
 import { QUERY_STALE_TIME } from '@/lib/queryConfig'
+import { formatDatePtBR } from '@/lib/utils'
 
 function HeroSkeleton() {
   return (
@@ -82,7 +83,7 @@ function EpisodesPageInner() {
                 <div className="flex items-center gap-5 text-h4 text-foreground-strong">
                   <div className="flex items-center gap-2">
                     <Calendar size={24} className="flex-shrink-0" />
-                    <span>{episode.air_date}</span>
+                    <span>{formatDatePtBR(episode.air_date)}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <ListVideo size={24} className="flex-shrink-0" />
