@@ -1,4 +1,4 @@
-import apiClient from './client'
+import apiClient, { emptyOnNotFound } from './client'
 import type { ApiResponse, LocationItem } from '../types'
 
 export async function getLocations(
@@ -7,8 +7,10 @@ export async function getLocations(
 ): Promise<ApiResponse<LocationItem>> {
   const params: Record<string, string | number> = { page }
   if (name) params.name = name
-  const { data } = await apiClient.get<ApiResponse<LocationItem>>('/location', { params })
-  return data
+  return apiClient
+    .get<ApiResponse<LocationItem>>('/location', { params })
+    .then((r) => r.data)
+    .catch(emptyOnNotFound<LocationItem>)
 }
 
 export async function getLocation(id: number): Promise<LocationItem> {

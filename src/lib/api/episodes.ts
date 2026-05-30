@@ -1,4 +1,4 @@
-import apiClient from './client'
+import apiClient, { emptyOnNotFound } from './client'
 import type { ApiResponse, Episode } from '../types'
 
 export async function getEpisodes(
@@ -7,8 +7,10 @@ export async function getEpisodes(
 ): Promise<ApiResponse<Episode>> {
   const params: Record<string, string | number> = { page }
   if (name) params.name = name
-  const { data } = await apiClient.get<ApiResponse<Episode>>('/episode', { params })
-  return data
+  return apiClient
+    .get<ApiResponse<Episode>>('/episode', { params })
+    .then((r) => r.data)
+    .catch(emptyOnNotFound<Episode>)
 }
 
 export async function getEpisode(id: number): Promise<Episode> {

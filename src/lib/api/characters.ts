@@ -1,4 +1,4 @@
-import apiClient from './client'
+import apiClient, { emptyOnNotFound } from './client'
 import type { ApiResponse, Character } from '../types'
 
 export async function getCharacters(
@@ -7,8 +7,10 @@ export async function getCharacters(
 ): Promise<ApiResponse<Character>> {
   const params: Record<string, string | number> = { page }
   if (name) params.name = name
-  const { data } = await apiClient.get<ApiResponse<Character>>('/character', { params })
-  return data
+  return apiClient
+    .get<ApiResponse<Character>>('/character', { params })
+    .then((r) => r.data)
+    .catch(emptyOnNotFound<Character>)
 }
 
 export async function getCharacter(id: number): Promise<Character> {
