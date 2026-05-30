@@ -118,7 +118,7 @@ function CharactersPageInner() {
             ) : (
               <div className="flex flex-col sm:flex-row gap-16">
                 <div className="flex-shrink-0">
-                  <div className="relative w-full sm:w-[360px] h-[440px] rounded-2xl overflow-hidden">
+                  <div className="relative w-full sm:w-[360px] h-64 sm:h-[440px] rounded-2xl overflow-hidden">
                     <Image
                       src={character.image}
                       alt={character.name}
@@ -132,7 +132,7 @@ function CharactersPageInner() {
 
                 <div className="flex flex-col gap-8 flex-1 min-w-0">
                   <div className="flex items-center gap-4">
-                    <h1 className="text-h1 font-bold text-foreground-strong">{character.name}</h1>
+                    <h1 className="text-2xl sm:text-h1 font-bold text-foreground-strong">{character.name}</h1>
                     {heroFavoriteItem && <FavoriteButton item={heroFavoriteItem} size="lg" />}
                   </div>
 
@@ -156,7 +156,7 @@ function CharactersPageInner() {
                     </div>
                   </div>
 
-                  <div className="flex flex-row gap-6 mt-6 self-end">
+                  <div className="flex flex-col sm:flex-row gap-6 mt-6 sm:self-end">
                     {originLocation && (
                       <div className="flex-1">
                         <LocationCard location={originLocation} />
@@ -175,22 +175,22 @@ function CharactersPageInner() {
         </section>
       )}
 
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16" ref={listRef}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16" ref={listRef}>
         <Pagination currentPage={page} totalPages={totalPages} onPageChange={changePage} />
 
-        <div className="flex items-center gap-3 my-16">
+        <div className="flex items-center gap-3 my-8 lg:my-16">
           <SmileyBlankIcon size={24} className="text-foreground flex-shrink-0" />
           <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
         </div>
 
         {isLoadingCharacters ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 lg:mb-16">
             {Array.from({ length: 12 }).map((_, i) => (
               <SkeletonCard key={i} type="character" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8 lg:mb-16">
             {characters.map((char) => (
               <CharacterCard key={char.id} character={char} onSelect={() => handleSelect(char.id)} />
             ))}

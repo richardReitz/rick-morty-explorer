@@ -11,7 +11,7 @@ export function Hero() {
     <section className="border-b-2 dark:border-transparent border-cyan-primary dark:bg-black overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
 
-        <div className="flex-1 flex flex-col justify-center w-full">
+        <div className="flex-1 flex flex-col justify-center w-full pt-10 pb-2 lg:py-0">
           <h1 className="text-[32px] sm:text-h1 text-foreground">
             Saiba tudo em
           </h1>
@@ -38,7 +38,7 @@ export function Hero() {
               src={theme === 'dark' ? '/HighlightImage.png' : '/HighLightImage-w.png'}
               alt="Rick Sanchez"
               fill
-              className="object-cover"
+              className="object-contain lg:object-cover"
               priority
             />
           </div>

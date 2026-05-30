@@ -48,11 +48,11 @@ export function HomePageClient() {
 
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="space-y-12 py-12">
-          <section className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <section className="flex items-center justify-between gap-3">
             <SearchBar
               value={searchQuery}
               onChange={setSearchQuery}
-              className="w-full sm:w-80 lg:w-96"
+              className="flex-1 lg:flex-none lg:w-96"
             />
             <FilterTabs active={activeTab} onChange={setActiveTab} />
           </section>

@@ -14,17 +14,21 @@ export function EpisodeList({ items, isLoading }: EpisodeListProps) {
     <section className="transition-opacity duration-200">
       <SectionHeader title="Episódios" href="/episodes" />
       {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4 pb-2 sm:pb-0">
           {Array.from({ length: 5 }).map((_, i) => (
-            <SkeletonCard key={i} type="episode" />
+            <div key={i} className="flex-shrink-0 w-72 sm:w-auto">
+              <SkeletonCard type="episode" />
+            </div>
           ))}
         </div>
       ) : items.length === 0 ? (
         <EmptyState />
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-5 gap-4 pb-2 sm:pb-0">
           {items.map((ep) => (
-            <EpisodeCard key={ep.id} episode={ep} />
+            <div key={ep.id} className="flex-shrink-0 w-72 sm:w-auto">
+              <EpisodeCard episode={ep} />
+            </div>
           ))}
         </div>
       )}

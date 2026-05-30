@@ -1,6 +1,7 @@
 'use client'
 
-import { MapPin, TvMinimalPlay } from 'lucide-react'
+import { useState } from 'react'
+import { MapPin, TvMinimalPlay, ListFilter } from 'lucide-react'
 import { SmileyBlankIcon } from '../icons'
 import { cn } from '@/lib/utils'
 import { Button } from './Button'
@@ -19,21 +20,74 @@ const tabs: { value: FilterTab; label: string; Icon: React.ElementType }[] = [
 ]
 
 export function FilterTabs({ active, onChange }: FilterTabsProps) {
+  const [open, setOpen] = useState(false)
+  const activeTab = tabs.find(t => t.value === active)
+
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-hide">
-      <span className="text-body text-foreground-strong whitespace-nowrap flex-shrink-0">Filtrar por:</span>
-      {tabs.map(({ value, label, Icon }) => (
+    <>
+      {/* Mobile / tablet: dropdown */}
+      <div className="relative lg:hidden flex-shrink-0">
         <Button
-          key={value}
-          variant={active === value ? 'primary' : 'surface'}
+          variant={active ? 'primary' : 'surface'}
           size="sm"
-          onClick={() => onChange(active === value ? null : value)}
-          className={cn('px-4 py-2 whitespace-nowrap flex-shrink-0', active !== value && 'dark:!bg-transparent dark:hover:!bg-foreground/5')}
+          onClick={() => setOpen(prev => !prev)}
+          className={cn(
+            'px-4 py-2',
+            !active && 'dark:!bg-transparent dark:hover:!bg-foreground/5'
+          )}
         >
-          <Icon />
-          {label}
+          <ListFilter size={16} />
+          {activeTab ? activeTab.label : 'Filtrar'}
         </Button>
-      ))}
-    </div>
+
+        {open && (
+          <>
+            <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+            <div className="absolute right-0 top-full mt-2 z-20 min-w-[180px] bg-bg-secondary dark:bg-bg-surface rounded-2xl p-1.5 flex flex-col gap-0.5 shadow-lg">
+              {active && (
+                <button
+                  onClick={() => { onChange(null); setOpen(false) }}
+                  className="flex items-center gap-2 px-3 py-2 rounded-xl text-body text-muted hover:bg-bg-surface dark:hover:bg-bg-primary transition-colors text-left w-full"
+                >
+                  Todos
+                </button>
+              )}
+              {tabs.map(({ value, label, Icon }) => (
+                <button
+                  key={value}
+                  onClick={() => { onChange(active === value ? null : value); setOpen(false) }}
+                  className={cn(
+                    'flex items-center gap-2 px-3 py-2 rounded-xl text-body transition-colors text-left w-full',
+                    active === value
+                      ? 'bg-cyan-primary text-white'
+                      : 'text-foreground-strong hover:bg-bg-surface dark:hover:bg-bg-primary'
+                  )}
+                >
+                  <Icon size={16} className="flex-shrink-0" />
+                  {label}
+                </button>
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Desktop: tab buttons */}
+      <div className="hidden lg:flex items-center gap-2">
+        <span className="text-body text-foreground-strong whitespace-nowrap flex-shrink-0">Filtrar por:</span>
+        {tabs.map(({ value, label, Icon }) => (
+          <Button
+            key={value}
+            variant={active === value ? 'primary' : 'surface'}
+            size="sm"
+            onClick={() => onChange(active === value ? null : value)}
+            className={cn('px-4 py-2 whitespace-nowrap flex-shrink-0', active !== value && 'dark:!bg-transparent dark:hover:!bg-foreground/5')}
+          >
+            <Icon />
+            {label}
+          </Button>
+        ))}
+      </div>
+    </>
   )
 }

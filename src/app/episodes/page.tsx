@@ -74,7 +74,7 @@ function EpisodesPageInner() {
                 <TvMinimalPlay size={48} className="text-foreground-strong" />
 
                 <div className="flex items-center gap-4">
-                  <h1 className="text-h1 font-bold text-foreground-strong">{episode.name}</h1>
+                  <h1 className="text-2xl sm:text-h1 font-bold text-foreground-strong">{episode.name}</h1>
                   {heroFavoriteItem && <FavoriteButton item={heroFavoriteItem} size="lg" />}
                 </div>
 
@@ -99,22 +99,22 @@ function EpisodesPageInner() {
         </section>
       )}
 
-      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-16" ref={listRef}>
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16" ref={listRef}>
         <Pagination currentPage={page} totalPages={totalPages} onPageChange={changePage} />
 
-        <div className="flex items-center gap-3 my-16">
+        <div className="flex items-center gap-3 my-8 lg:my-16">
           <TvMinimalPlay size={24} className="text-foreground flex-shrink-0" />
           <h3 className="text-h3 font-bold text-foreground">Episódios</h3>
         </div>
 
         {isLoadingEpisodes ? (
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8 lg:mb-16">
             {Array.from({ length: 10 }).map((_, i) => (
               <SkeletonCard key={i} type="episode" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8 lg:mb-16">
             {episodes.map((ep) => (
               <EpisodeCard key={ep.id} episode={ep} onSelect={() => handleSelect(ep.id)} />
             ))}
