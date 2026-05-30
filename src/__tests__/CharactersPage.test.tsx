@@ -10,6 +10,7 @@ import type { ApiResponse, Character, LocationItem } from '@/lib/types'
 // ─── Mocks de módulos externos ────────────────────────────────────────────────
 
 vi.mock('next/image', () => ({
+  // eslint-disable-next-line @next/next/no-img-element
   default: ({ alt, src }: { alt: string; src: string }) => <img alt={alt} src={src} />,
 }))
 

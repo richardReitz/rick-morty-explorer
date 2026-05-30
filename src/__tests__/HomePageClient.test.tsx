@@ -6,11 +6,12 @@ import { HomePageClient } from '@/components/layout/HomePageClient'
 import { getCharacters } from '@/lib/api/characters'
 import { getEpisodes } from '@/lib/api/episodes'
 import { getLocations } from '@/lib/api/locations'
-import type { ApiResponse, Character, Episode, LocationItem } from '@/lib/types'
+import type { ApiResponse, Character } from '@/lib/types'
 
 // ─── Mocks de módulos externos ────────────────────────────────────────────────
 
 vi.mock('next/image', () => ({
+  // eslint-disable-next-line @next/next/no-img-element
   default: ({ alt, src }: { alt: string; src: string }) => (
     <img alt={alt} src={src} />
   ),
@@ -57,30 +58,6 @@ function makeCharacter(id: number): Character {
     episode: [],
     url: `https://rickandmortyapi.com/api/character/${id}`,
     created: '2017-11-04T18:48:46.250Z',
-  }
-}
-
-function makeEpisode(id: number): Episode {
-  return {
-    id,
-    name: `Episódio ${id}`,
-    air_date: 'December 2, 2013',
-    episode: `S01E0${id}`,
-    characters: [],
-    url: `https://rickandmortyapi.com/api/episode/${id}`,
-    created: '2017-11-10T12:56:33.798Z',
-  }
-}
-
-function makeLocation(id: number): LocationItem {
-  return {
-    id,
-    name: `Localização ${id}`,
-    type: 'Planet',
-    dimension: 'Dimension C-137',
-    residents: [],
-    url: `https://rickandmortyapi.com/api/location/${id}`,
-    created: '2017-11-10T12:42:04.162Z',
   }
 }
 
