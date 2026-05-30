@@ -32,8 +32,8 @@ export function FilterTabs({ active, onChange }: FilterTabsProps) {
           size="sm"
           onClick={() => setOpen(prev => !prev)}
           className={cn(
-            'px-4 py-2',
-            !active && 'dark:!bg-transparent dark:hover:!bg-foreground/5'
+            'px-4 h-10',
+            !active && '!bg-white dark:!bg-bg-surface border border-foreground-strong dark:border-transparent text-foreground-strong dark:text-foreground'
           )}
         >
           <ListFilter size={16} />
