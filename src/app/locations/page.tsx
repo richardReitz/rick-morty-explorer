@@ -109,13 +109,13 @@ function LocationsPageInner() {
         </div>
 
         {isLoadingLocations ? (
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-8 lg:mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 pt-2 mb-8 lg:mb-16">
             {Array.from({ length: 14 }).map((_, i) => (
               <SkeletonCard key={i} type="location" />
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 mb-8 lg:mb-16">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4 pt-2 mb-8 lg:mb-16">
             {locations.map((loc) => (
               <LocationCard key={loc.id} location={loc} onSelect={() => handleSelect(loc.id)} />
             ))}
