@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronUp } from 'lucide-react'
+import { LucideCircleChevronUp } from 'lucide-react'
 import { Button } from '@/components/ui/Button'
 
 export function Footer() {
@@ -26,10 +26,10 @@ export function Footer() {
           onClick={scrollToTop}
           variant="ghost"
           size="sm"
-          className="p-0 text-foreground hover:text-cyan-primary hover:bg-transparent"
+          className="p-0 text-foreground-strong text-h4 hover:text-cyan-primary hover:bg-transparent"
         >
           <span>Voltar ao topo</span>
-          <ChevronUp size={18} />
+          <LucideCircleChevronUp size={32} />
         </Button>
       </div>
     </footer>
