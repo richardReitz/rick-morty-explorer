@@ -142,12 +142,15 @@ export function FavoritesPageClient() {
               {episodeFavs.length === 0 ? (
                 <EmptyState message="Nenhum episódio favoritado ainda" />
               ) : (
-                <div className="flex overflow-x-auto gap-4 pb-2">
-                  {displayedEpisodes.map((fav) => (
-                    <div key={fav.id} className="flex-shrink-0 w-72">
-                      <EpisodeCard episode={toEpisode(fav)} />
-                    </div>
-                  ))}
+                <div className="relative">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-2 sm:pb-0">
+                    {displayedEpisodes.map((fav) => (
+                      <div key={fav.id} className="flex-shrink-0 w-72 snap-start sm:w-auto">
+                        <EpisodeCard episode={toEpisode(fav)} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent sm:hidden" />
                 </div>
               )}
             </section>
@@ -169,12 +172,15 @@ export function FavoritesPageClient() {
               {locationFavs.length === 0 ? (
                 <EmptyState message="Nenhuma localização favoritada ainda" />
               ) : (
-                <div className="flex overflow-x-auto gap-4 pb-2">
-                  {displayedLocations.map((fav) => (
-                    <div key={fav.id} className="flex-shrink-0 w-48">
-                      <LocationCard location={toLocation(fav)} />
-                    </div>
-                  ))}
+                <div className="relative">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-2 pb-2 sm:pb-0">
+                    {displayedLocations.map((fav) => (
+                      <div key={fav.id} className="flex-shrink-0 w-48 snap-start sm:w-auto">
+                        <LocationCard location={toLocation(fav)} />
+                      </div>
+                    ))}
+                  </div>
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent sm:hidden" />
                 </div>
               )}
             </section>
