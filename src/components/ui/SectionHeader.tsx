@@ -11,7 +11,7 @@ export function SectionHeader({ title, href }: SectionHeaderProps) {
   return (
     <div className="flex items-center mb-8 gap-4">
       <h3 className="text-h3 font-bold text-foreground">{title}</h3>
-      <Button variant="primary" size="sm" asChild>
+      <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
         <Link href={href}>
           <LayoutGrid size={14} />
           Ver todos

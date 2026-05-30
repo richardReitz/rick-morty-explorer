@@ -105,14 +105,12 @@ export function FavoritesPageClient() {
             <section className="transition-opacity duration-200">
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
-                {activeTab !== 'characters' && (
-                  <Button variant="primary" size="sm" asChild>
-                    <Link href="/characters">
-                      <LayoutGrid size={14} />
-                      Ver todos
-                    </Link>
-                  </Button>
-                )}
+                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
+                  <Link href="/characters">
+                    <LayoutGrid size={14} />
+                    Ver todos
+                  </Link>
+                </Button>
               </div>
               {characterFavs.length === 0 ? (
                 <EmptyState message="Nenhum personagem favoritado ainda" />
@@ -130,14 +128,12 @@ export function FavoritesPageClient() {
             <section className="transition-opacity duration-200">
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Episódios</h3>
-                {activeTab !== 'episodes' && (
-                  <Button variant="primary" size="sm" asChild>
-                    <Link href="/episodes">
-                      <LayoutGrid size={14} />
-                      Ver todos
-                    </Link>
-                  </Button>
-                )}
+                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
+                  <Link href="/episodes">
+                    <LayoutGrid size={14} />
+                    Ver todos
+                  </Link>
+                </Button>
               </div>
               {episodeFavs.length === 0 ? (
                 <EmptyState message="Nenhum episódio favoritado ainda" />
@@ -160,14 +156,12 @@ export function FavoritesPageClient() {
             <section className="transition-opacity duration-200">
               <div className="flex items-center mb-8 gap-4">
                 <h3 className="text-h3 font-bold text-foreground">Localizações</h3>
-                {activeTab !== 'locations' && (
-                  <Button variant="primary" size="sm" asChild>
-                    <Link href="/locations">
-                      <LayoutGrid size={14} />
-                      Ver todos
-                    </Link>
-                  </Button>
-                )}
+                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
+                  <Link href="/locations">
+                    <LayoutGrid size={14} />
+                    Ver todos
+                  </Link>
+                </Button>
               </div>
               {locationFavs.length === 0 ? (
                 <EmptyState message="Nenhuma localização favoritada ainda" />
