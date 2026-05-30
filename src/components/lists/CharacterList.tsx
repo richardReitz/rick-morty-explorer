@@ -7,9 +7,10 @@ import type { Character } from '@/lib/types'
 interface CharacterListProps {
   items: Character[]
   isLoading: boolean
+  emptyMessage?: string
 }
 
-export function CharacterList({ items, isLoading }: CharacterListProps) {
+export function CharacterList({ items, isLoading, emptyMessage }: CharacterListProps) {
   return (
     <section className="transition-opacity duration-200">
       <SectionHeader title="Personagens" href="/characters" />
@@ -20,7 +21,7 @@ export function CharacterList({ items, isLoading }: CharacterListProps) {
           ))}
         </div>
       ) : items.length === 0 ? (
-        <EmptyState />
+        <EmptyState message={emptyMessage} />
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {items.map((char) => (

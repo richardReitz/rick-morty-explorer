@@ -2,14 +2,10 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import Link from 'next/link'
-import { LayoutGrid } from 'lucide-react'
 import { HeartIcon } from '../icons'
 import { MainLayout } from '@/components/layout/MainLayout'
-import { FilterTabs, type FilterTab, EmptyState, Button } from '@/components/ui'
-import { CharacterCard } from '@/components/cards/CharacterCard'
-import { EpisodeCard } from '@/components/cards/EpisodeCard'
-import { LocationCard } from '@/components/cards/LocationCard'
+import { FilterTabs, type FilterTab } from '@/components/ui'
+import { CharacterList, EpisodeList, LocationList } from '@/components/lists'
 import { useFavoritesStore } from '@/lib/store/favorites'
 import type { Character, Episode, LocationItem, FavoriteItem } from '@/lib/types'
 
@@ -102,82 +98,27 @@ export function FavoritesPageClient() {
           </section>
 
           {showCharacters && (
-            <section className="transition-opacity duration-200">
-              <div className="flex items-center mb-8 gap-4">
-                <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
-                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
-                  <Link href="/characters">
-                    <LayoutGrid size={14} />
-                    Ver todos
-                  </Link>
-                </Button>
-              </div>
-              {characterFavs.length === 0 ? (
-                <EmptyState message="Nenhum personagem favoritado ainda" />
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {displayedCharacters.map((fav) => (
-                    <CharacterCard key={fav.id} character={toCharacter(fav)} />
-                  ))}
-                </div>
-              )}
-            </section>
+            <CharacterList
+              items={displayedCharacters.map(toCharacter)}
+              isLoading={false}
+              emptyMessage="Nenhum personagem favoritado ainda"
+            />
           )}
 
           {showEpisodes && (
-            <section className="transition-opacity duration-200">
-              <div className="flex items-center mb-8 gap-4">
-                <h3 className="text-h3 font-bold text-foreground">Episódios</h3>
-                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
-                  <Link href="/episodes">
-                    <LayoutGrid size={14} />
-                    Ver todos
-                  </Link>
-                </Button>
-              </div>
-              {episodeFavs.length === 0 ? (
-                <EmptyState message="Nenhum episódio favoritado ainda" />
-              ) : (
-                <div className="relative">
-                  <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 pb-2 sm:pb-0">
-                    {displayedEpisodes.map((fav) => (
-                      <div key={fav.id} className="flex-shrink-0 w-72 snap-start sm:w-auto">
-                        <EpisodeCard episode={toEpisode(fav)} />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent sm:hidden" />
-                </div>
-              )}
-            </section>
+            <EpisodeList
+              items={displayedEpisodes.map(toEpisode)}
+              isLoading={false}
+              emptyMessage="Nenhum episódio favoritado ainda"
+            />
           )}
 
           {showLocations && (
-            <section className="transition-opacity duration-200">
-              <div className="flex items-center mb-8 gap-4">
-                <h3 className="text-h3 font-bold text-foreground">Localizações</h3>
-                <Button variant="primary" size="sm" asChild className="bg-cyan-primary dark:bg-bg-surface dark:hover:bg-bg-surface">
-                  <Link href="/locations">
-                    <LayoutGrid size={14} />
-                    Ver todos
-                  </Link>
-                </Button>
-              </div>
-              {locationFavs.length === 0 ? (
-                <EmptyState message="Nenhuma localização favoritada ainda" />
-              ) : (
-                <div className="relative">
-                  <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide sm:grid sm:grid-cols-3 lg:grid-cols-6 gap-4 pt-2 pb-2 sm:pb-0">
-                    {displayedLocations.map((fav) => (
-                      <div key={fav.id} className="flex-shrink-0 w-48 snap-start sm:w-auto">
-                        <LocationCard location={toLocation(fav)} />
-                      </div>
-                    ))}
-                  </div>
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[var(--bg-primary)] to-transparent sm:hidden" />
-                </div>
-              )}
-            </section>
+            <LocationList
+              items={displayedLocations.map(toLocation)}
+              isLoading={false}
+              emptyMessage="Nenhuma localização favoritada ainda"
+            />
           )}
         </div>
       </div>
