@@ -181,7 +181,7 @@ function CharactersPageInner() {
 
         <div className="flex items-center gap-3 my-8 lg:my-16">
           <SmileyBlankIcon size={24} className="text-foreground flex-shrink-0" />
-          <h3 className="text-h3 font-bold text-foreground">Personagens</h3>
+          <h3 className="text-h3 font-bold text-foreground leading-none">Mais<br />personagens</h3>
         </div>
 
         {isLoadingCharacters ? (

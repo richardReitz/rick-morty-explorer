@@ -105,7 +105,7 @@ function LocationsPageInner() {
 
         <div className="flex items-center gap-3 my-8 lg:my-16">
           <PlanetIcon size={24} className="text-foreground flex-shrink-0" />
-          <h3 className="text-h3 font-bold text-foreground">Localizações</h3>
+          <h3 className="text-h3 font-bold text-foreground leading-none">Mais<br />localizações</h3>
         </div>
 
         {isLoadingLocations ? (

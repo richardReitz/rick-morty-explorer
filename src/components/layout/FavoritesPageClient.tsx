@@ -76,8 +76,8 @@ export function FavoritesPageClient() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
           <div className="flex-1 flex flex-col justify-center w-full py-12 lg:py-0">
             <HeartIcon size={56} className="text-cyan-primary mb-4" strokeWidth={3} />
-            <h1 className="text-[32px] font-bold sm:text-h1 text-foreground-strong">Todos os seus</h1>
-            <h1 className="text-[32px] font-bold sm:text-h1 text-foreground-strong">
+            <h1 className="text-[32px] leading-none font-bold sm:text-h1 text-foreground-strong">Todos os seus</h1>
+            <h1 className="text-[32px] leading-none font-bold sm:text-h1 text-foreground-strong">
               <span className="text-cyan-primary">favoritos.</span>
             </h1>
           </div>

@@ -12,10 +12,10 @@ export function Hero() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row lg:items-stretch items-center">
 
         <div className="flex-1 flex flex-col justify-center w-full pt-10 pb-2 lg:py-0">
-          <h1 className="text-[32px] font-bold sm:text-h1 text-foreground-strong">
+          <h1 className="text-[32px] leading-none font-bold sm:text-h1 text-foreground-strong">
             Saiba tudo em
           </h1>
-          <h1 className="text-[32px] font-bold sm:text-h1 text-foreground-strong">
+          <h1 className="text-[32px] leading-none font-bold sm:text-h1 text-foreground-strong">
             um só <span className='text-cyan-primary'>lugar.</span>
           </h1>
 
