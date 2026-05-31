@@ -20,7 +20,7 @@ export function LocationCard({ location, onSelect }: { location: LocationItem; o
         size={48}
         className="text-foreground-strong absolute top-0 left-1/2 -translate-x-1/2 z-10"
       />
-      <div className="bg-bg-secondary hover:bg-bg-surface rounded-2xl px-4 pt-8 pb-4 flex flex-col items-center gap-3 text-center transition-colors h-full">
+      <div className="bg-bg-surface hover:bg-bg-secondary rounded-2xl px-4 pt-8 pb-4 flex flex-col items-center gap-3 text-center transition-colors h-full">
         <div className="w-full flex-1">
           <p className="text-h4 text-foreground-strong mb-1 truncate">{location.type || 'Planet'}</p>
           <h4 className="text-h4 text-cyan-primary line-clamp-2">{location.name}</h4>

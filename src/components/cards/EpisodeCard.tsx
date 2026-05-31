@@ -14,7 +14,7 @@ export function EpisodeCard({ episode, onSelect }: { episode: Episode; onSelect?
   }
 
   return (
-    <div className="bg-bg-secondary hover:bg-bg-surface rounded-2xl p-4 flex flex-col gap-3 transition-colors h-full">
+    <div className="bg-bg-surface hover:bg-bg-secondary rounded-2xl p-4 flex flex-col gap-3 transition-colors h-full">
       <div className="flex items-start gap-2 flex-1">
         <TvMinimalPlay size={20} className="text-foreground-strong flex-shrink-0" />
         <span className="font-normal text-foreground-strong text-h4 line-clamp-2">
