@@ -33,7 +33,7 @@ export function FilterTabs({ active, onChange }: FilterTabsProps) {
           onClick={() => setOpen(prev => !prev)}
           className={cn(
             'px-4 h-10',
-            !active && '!bg-white dark:!bg-bg-surface border border-foreground-strong dark:border-transparent text-foreground-strong dark:text-foreground'
+            !active && '!bg-white dark:!bg-[#313234] border border-foreground-strong dark:border-transparent text-foreground-strong dark:!text-white'
           )}
         >
           <ListFilter size={16} />
@@ -81,7 +81,7 @@ export function FilterTabs({ active, onChange }: FilterTabsProps) {
             variant={active === value ? 'primary' : 'surface'}
             size="sm"
             onClick={() => onChange(active === value ? null : value)}
-            className={cn('px-4 py-2 whitespace-nowrap flex-shrink-0', active !== value && 'dark:!bg-transparent dark:hover:!bg-foreground/5')}
+            className={cn('px-4 py-2 whitespace-nowrap flex-shrink-0', active !== value && 'dark:!bg-[#313234] dark:hover:!bg-[#313234]/80 dark:!text-white')}
           >
             <Icon />
             {label}

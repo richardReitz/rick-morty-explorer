@@ -25,7 +25,7 @@ export function SearchBar({
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
         className={cn(
-          'w-full bg-white dark:bg-bg-surface rounded-full pl-4 pr-9 h-10 text-body text-foreground',
+          'w-full bg-white dark:bg-bg-secondary rounded-full pl-4 pr-9 h-10 text-body text-foreground',
           'placeholder:text-muted border border-foreground-strong dark:border-transparent',
           'focus:outline-none focus:border-cyan-primary dark:focus:border-cyan-primary transition-colors'
         )}
