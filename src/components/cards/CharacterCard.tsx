@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { Activity, Info } from 'lucide-react'
+import { useState } from 'react'
 import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
 import { AlienIcon, PlanetIcon } from '../icons'
@@ -15,6 +16,8 @@ const statusLabel: Record<Character['status'], string> = {
 }
 
 export function CharacterCard({ character, onSelect }: { character: Character; onSelect?: () => void }) {
+  const [imgError, setImgError] = useState(false)
+
   const favoriteItem = {
     id: character.id,
     type: 'character' as const,
@@ -29,13 +32,20 @@ export function CharacterCard({ character, onSelect }: { character: Character; o
     <div className="bg-bg-surface hover:bg-bg-secondary rounded-2xl overflow-hidden transition-colors p-4">
       <div className="p-3 dark:p-0">
         <div className="relative aspect-square overflow-hidden rounded-2xl ring-2 ring-inset ring-cyan-primary dark:ring-0">
-          <Image
-            src={character.image}
-            alt={character.name}
-            fill
-            className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-          />
+          {imgError ? (
+            <div className="w-full h-full flex items-center justify-center bg-bg-secondary">
+              <AlienIcon size={48} className="text-foreground-muted" />
+            </div>
+          ) : (
+            <Image
+              src={character.image}
+              alt={character.name}
+              fill
+              className="object-cover"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              onError={() => setImgError(true)}
+            />
+          )}
         </div>
       </div>
       <div className="pt-4 flex flex-col gap-2">
