@@ -131,13 +131,13 @@ function CharactersPageInner() {
 
               <div className="flex flex-col sm:flex-row gap-6 mt-6 sm:self-end">
                 {originLocation && (
-                  <div className="flex-1">
-                    <LocationCard location={originLocation} />
+                  <div className="max-w-[200px] w-full">
+                    <LocationCard location={originLocation} variant="origin" />
                   </div>
                 )}
                 {currentLocation && (
-                  <div className="flex-1">
-                    <LocationCard location={currentLocation} />
+                  <div className="max-w-[200px] w-full">
+                    <LocationCard location={currentLocation} variant="location" />
                   </div>
                 )}
               </div>

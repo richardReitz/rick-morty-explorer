@@ -1,13 +1,13 @@
 'use client'
 
 import Link from 'next/link'
-import { Info } from 'lucide-react'
+import { Info, MapPin } from 'lucide-react'
 import { PlanetIcon } from '../icons'
 import { Button } from '../ui/Button'
 import { FavoriteButton } from '../ui/FavoriteButton'
 import type { LocationItem } from '@/lib/types'
 
-export function LocationCard({ location, onSelect }: { location: LocationItem; onSelect?: () => void }) {
+export function LocationCard({ location, onSelect, variant = 'origin' }: { location: LocationItem; onSelect?: () => void; variant?: 'origin' | 'location' }) {
   const favoriteItem = {
     id: location.id,
     type: 'location' as const,
@@ -16,10 +16,11 @@ export function LocationCard({ location, onSelect }: { location: LocationItem; o
 
   return (
     <div className="relative pt-6 w-full h-full">
-      <PlanetIcon
-        size={48}
-        className="text-foreground-strong absolute top-0 left-1/2 -translate-x-1/2 z-10"
-      />
+      {variant === 'origin' ? (
+        <PlanetIcon size={48} className="text-foreground-strong absolute top-0 left-1/2 -translate-x-1/2 z-10" />
+      ) : (
+        <MapPin size={48} className="text-foreground-strong absolute top-0 left-1/2 -translate-x-1/2 z-10" />
+      )}
       <div className="bg-bg-surface hover:bg-bg-secondary rounded-2xl px-4 pt-8 pb-4 flex flex-col items-center gap-3 text-center transition-colors h-full">
         <div className="w-full flex-1">
           <p className="text-h4 text-foreground-strong mb-1 truncate">{location.type || 'Planet'}</p>
