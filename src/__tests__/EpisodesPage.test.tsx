@@ -26,6 +26,7 @@ vi.mock('next/link', () => ({
 // Isola o layout: apenas renderiza os filhos para simplificar as queries
 vi.mock('@/components/layout', () => ({
   MainLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  DetailHeroSection: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }))
 
 // Isola o estado de favoritos do Zustand
@@ -138,7 +139,7 @@ describe('EpisodesPage', () => {
       await waitFor(() =>
         expect(screen.getByRole('heading', { level: 1, name: 'Pilot' })).toBeInTheDocument()
       )
-      expect(screen.getByText('December 2, 2013')).toBeInTheDocument()
+      expect(screen.getByText('2 de dezembro de 2013')).toBeInTheDocument()
       expect(screen.getByText('S01E01')).toBeInTheDocument()
     })
 

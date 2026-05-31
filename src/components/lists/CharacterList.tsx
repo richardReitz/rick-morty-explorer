@@ -8,12 +8,13 @@ interface CharacterListProps {
   items: Character[]
   isLoading: boolean
   emptyMessage?: string
+  showViewAll?: boolean
 }
 
-export function CharacterList({ items, isLoading, emptyMessage }: CharacterListProps) {
+export function CharacterList({ items, isLoading, emptyMessage, showViewAll = true }: CharacterListProps) {
   return (
     <section className="transition-opacity duration-200">
-      <SectionHeader title="Personagens" href="/characters" />
+      <SectionHeader title="Personagens" href={showViewAll ? '/characters' : undefined} />
       {isLoading ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {Array.from({ length: 8 }).map((_, i) => (

@@ -102,6 +102,7 @@ export function FavoritesPageClient() {
               items={displayedCharacters.map(toCharacter)}
               isLoading={false}
               emptyMessage="Nenhum personagem favoritado ainda"
+              showViewAll={activeTab !== 'characters'}
             />
           )}
 

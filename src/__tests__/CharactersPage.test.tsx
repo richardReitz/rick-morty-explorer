@@ -31,6 +31,7 @@ vi.mock('next/navigation', () => ({
 // Isola o layout: não é o objeto dos testes
 vi.mock('@/components/layout', () => ({
   MainLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  DetailHeroSection: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
 }))
 
 // FavoriteButton depende do zustand com persist — isolamos para evitar side-effects
@@ -116,7 +117,7 @@ describe('CharactersPage', () => {
     it('exibe o título "Personagens" após o carregamento', async () => {
       renderPage()
       await waitFor(() =>
-        expect(screen.getByRole('heading', { name: 'Personagens' })).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /mais\s*personagens/i })).toBeInTheDocument()
       )
     })
 
@@ -136,7 +137,7 @@ describe('CharactersPage', () => {
       renderPage()
       // Aguarda o carregamento da lista para garantir que o hero não apareceu depois
       await waitFor(() =>
-        expect(screen.getByRole('heading', { name: 'Personagens' })).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /mais\s*personagens/i })).toBeInTheDocument()
       )
       expect(screen.queryByRole('heading', { level: 1 })).not.toBeInTheDocument()
     })
@@ -149,7 +150,7 @@ describe('CharactersPage', () => {
 
       // Aguarda a lista carregar para eliminar os pulsos dela
       await waitFor(() =>
-        expect(screen.getByRole('heading', { name: 'Personagens' })).toBeInTheDocument()
+        expect(screen.getByRole('heading', { name: /mais\s*personagens/i })).toBeInTheDocument()
       )
 
       // O nome do personagem (h1) ainda não deve aparecer
@@ -211,7 +212,7 @@ describe('CharactersPage', () => {
     it('botão "Página anterior" está desabilitado na primeira página', async () => {
       vi.mocked(getCharacters).mockResolvedValue(apiOf([], 5))
       renderPage()
-      await waitFor(() => screen.getByRole('heading', { name: 'Personagens' }))
+      await waitFor(() => screen.getByRole('heading', { name: /mais\s*personagens/i }))
       const prevButtons = screen.getAllByRole('button', { name: 'Página anterior' })
       prevButtons.forEach((btn) => expect(btn).toBeDisabled())
     })
@@ -219,7 +220,7 @@ describe('CharactersPage', () => {
     it('botão "Próxima página" está desabilitado quando há apenas 1 página', async () => {
       vi.mocked(getCharacters).mockResolvedValue(apiOf([], 1))
       renderPage()
-      await waitFor(() => screen.getByRole('heading', { name: 'Personagens' }))
+      await waitFor(() => screen.getByRole('heading', { name: /mais\s*personagens/i }))
       const nextButtons = screen.getAllByRole('button', { name: 'Próxima página' })
       nextButtons.forEach((btn) => expect(btn).toBeDisabled())
     })
@@ -227,7 +228,7 @@ describe('CharactersPage', () => {
     it('marca a página atual com aria-current="page"', async () => {
       vi.mocked(getCharacters).mockResolvedValue(apiOf([], 5))
       renderPage()
-      await waitFor(() => screen.getByRole('heading', { name: 'Personagens' }))
+      await waitFor(() => screen.getByRole('heading', { name: /mais\s*personagens/i }))
       // Na página 1, os botões "Página 1" devem ter aria-current="page"
       const page1Buttons = screen.getAllByRole('button', { name: 'Página 1' })
       page1Buttons.forEach((btn) => expect(btn).toHaveAttribute('aria-current', 'page'))
