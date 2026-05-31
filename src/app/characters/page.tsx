@@ -70,7 +70,15 @@ function CharactersPageInner() {
   const characters = charactersData?.results ?? []
 
   const heroFavoriteItem = character
-    ? { id: character.id, type: 'character' as const, name: character.name, image: character.image }
+    ? {
+        id: character.id,
+        type: 'character' as const,
+        name: character.name,
+        image: character.image,
+        status: character.status,
+        species: character.species,
+        origin: character.origin,
+      }
     : null
 
   return (

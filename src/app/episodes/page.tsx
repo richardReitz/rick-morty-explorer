@@ -33,7 +33,7 @@ function EpisodesPageInner() {
   const episodes = episodesData?.results ?? []
 
   const heroFavoriteItem = episode
-    ? { id: episode.id, type: 'episode' as const, name: episode.name }
+    ? { id: episode.id, type: 'episode' as const, name: episode.name, episode: episode.episode }
     : null
 
   return (
