@@ -31,7 +31,7 @@ function toEpisode(fav: FavoriteItem): Episode {
     id: fav.id,
     name: fav.name,
     air_date: '',
-    episode: '',
+    episode: fav.episode ?? '',
     characters: [],
     url: '',
     created: '',

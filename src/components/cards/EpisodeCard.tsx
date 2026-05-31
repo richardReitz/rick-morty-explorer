@@ -11,6 +11,7 @@ export function EpisodeCard({ episode, onSelect }: { episode: Episode; onSelect?
     id: episode.id,
     type: 'episode' as const,
     name: episode.name,
+    episode: episode.episode,
   }
 
   return (

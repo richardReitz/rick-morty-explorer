@@ -65,4 +65,5 @@ export interface FavoriteItem {
   status?: 'Alive' | 'Dead' | 'unknown'
   species?: string
   origin?: Origin
+  episode?: string
 }
